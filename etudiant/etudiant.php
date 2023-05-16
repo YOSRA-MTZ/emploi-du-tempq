@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <!--[if lt IE 9]>
-		<script src="assets/js/html5shiv.min.js"></script>
+		<script src="assets/js/php5shiv.min.js"></script>
 		<script src="assets/js/respond.min.js"></script>
 	<![endif]-->
 </head>
@@ -22,8 +22,8 @@
     <div class="main-wrapper">
         <div class="header">
 			<div class="header-left">
-                <a href="enseignant.html" class="logo">
-					<img src="assets/img/mundiap.png" width="40" height="40" > 
+				<a href="etudiant.php" class="logo">
+					<img src="assets/img/mundiap.png" width="40" height="40">
 				</a>
 			</div>
 			<a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
@@ -38,7 +38,7 @@
                         <div class="drop-scroll">
                             <ul class="notification-list">
                                 <li class="notification-message">
-                                    <a href="activities.html">
+                                    <a href="activities.php">
                                         <div class="media">
 											<span class="avatar">
 												<img alt="John Doe" src="assets/img/user.jpg" class="img-fluid">
@@ -56,7 +56,7 @@
                             </ul>
                         </div>
                         <div class="topnav-dropdown-footer">
-                            <a href="notification.html">Voir tous les Notifications</a>
+                            <a href="notification.php">Voir tous les Notifications</a>
                         </div>
                     </div>
                 </li>
@@ -67,12 +67,12 @@
 							<img class="rounded-circle" src="assets/img/user.jpg" width="24" alt="Admin">
 							<span class="status online"></span>
 						</span>
-						<span>Prof</span>
+						<span>Etudiant</span>
                     </a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="profile.html">My Profile</a>
+						<a class="dropdown-item" href="profile.php">My Profile</a>
 					
-						<a class="dropdown-item" href="login.html">Logout</a>
+						<a class="dropdown-item" href="login.php">Logout</a>
 					</div>
                 </li>
             </ul>
@@ -84,24 +84,15 @@
                     <ul>
                         <li class="menu-title">Menu</li>
                         <li class="active">
-                            <a href="enseignant.html"><i class="fa fa-home"></i> <span>Accueil</span></a>
+                            <a href="etudiant.php"><i class="fa fa-home"></i> <span>Accueil</span></a>
                         </li>
 
                         <li >
-                            <a href="monemploie.html"><i class="fa fa-user"></i> <span>Mon emploie</span></a>
+                            <a href="monemploie.php"><i class="fa fa-user"></i> <span>Mon emploi</span></a>
 						</li>
 
                         <li>
-                            <a href="demande.html"><i class="fa fa-envelope-open-o"></i> <span>Demande</span></a>
-                        </li>
-                        
-						<li >
-                            <a href="classe.html"><i class="fa fa-user"></i> <span>Classes</span></a>
-						</li>
-
-                        <li>
-                            <a href="notification.html"><i class="fa fa-bell-o"></i> <span>Notification</span></a>
-
+							<a href="notification.php"><i class="fa fa-bell-o"></i> <span>Notifications</span></a>
 						</li>
                        
 
@@ -128,4 +119,4 @@
 
 
 <!-- index22:59-->
-</html>
+</php>
