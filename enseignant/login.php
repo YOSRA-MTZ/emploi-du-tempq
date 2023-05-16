@@ -14,7 +14,7 @@
 	</head>
 	<body class="img js-fullheight" style="background-image: url(/assets/img/mundia.png);">
         <div class="header-left">
-            <a href="enseignant.html" class="logo">
+            <a href="enseignant.php" class="logo">
                 <img src="assets/img/logo.png" width="150" height="40">
             </a>
         </div>
@@ -60,5 +60,5 @@
   <script src="/assets/js/main.js"></script>
 
 	</body>
-</html>
+</php>
 
