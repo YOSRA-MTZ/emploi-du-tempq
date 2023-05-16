@@ -237,8 +237,8 @@ $result = mysqli_query($mysqli, $sql);
                                             echo "-";
                                             }
                                     echo "</td>";
-                                     echo "<td> <a href=\"EditEnseignant.php?id=". $row['id_dispo'] ."\" style=\"margin-right:10px; color:green;\">Edit</a>
-                                        <a href=\"delete.php?id=". $row['id_dispo'] ."\" style=\"margin-right:10px; color:red;\" onClick=\"return confirm('Êtes-vous sûr de vouloir supprimer cette disponibilité ?');\">Delete</a></td> ";    
+                                     echo "<td> <a href=\"EditEnseignant.php?id_dispo=". $row['id_dispo'] ."\" style=\"margin-right:10px; color:green;\">Edit</a>
+                                        <a href=\"delete.php?id_dispo=". $row['id_dispo'] ."\" style=\"margin-right:10px; color:red;\" onClick=\"return confirm('Êtes-vous sûr de vouloir supprimer cette disponibilité ?');\">Delete</a></td> ";    
                                     echo "</tr>";
                                 } ?>
 
