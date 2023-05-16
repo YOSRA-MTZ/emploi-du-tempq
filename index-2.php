@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <!--[if lt IE 9]>
-		<script src="assets/js/html5shiv.min.js"></script>
+		<script src="assets/js/php5shiv.min.js"></script>
 		<script src="assets/js/respond.min.js"></script>
 	<![endif]-->
 </head>
@@ -22,7 +22,7 @@
     <div class="main-wrapper">
         <div class="header">
 			<div class="header-left">
-				<a href="index-2.html" class="logo">
+				<a href="index-2.php" class="logo">
 					<img src="assets/img/mundiap.png" width="40" height="40" > 
 				</a>
 			</div>
@@ -39,7 +39,7 @@
                            
                         </div>
                         <div class="topnav-dropdown-footer">
-                            <a href="notification.html">Voir tous les Notifications</a>
+                            <a href="notification.php">Voir tous les Notifications</a>
                         </div>
                     </div>
                 </li>
@@ -53,17 +53,17 @@
 						<span>Admin</span>
                     </a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="profile.html">My Profile</a>
+						<a class="dropdown-item" href="profile.php">My Profile</a>
 					
-						<a class="dropdown-item" href="login.html">Logout</a>
+						<a class="dropdown-item" href="login.php">Logout</a>
 					</div>
                 </li>
             </ul>
             <div class="dropdown mobile-user-menu float-right">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="profile.html">My Profile</a>
-                    <a class="dropdown-item" href="login.html">Logout</a>
+                    <a class="dropdown-item" href="profile.php">My Profile</a>
+                    <a class="dropdown-item" href="login.php">Logout</a>
                 </div>
             </div>
         </div>
@@ -73,27 +73,27 @@
                     <ul>
                         <li class="menu-title">Menu</li>
                         <li class="active">
-                            <a href="index-2.html"><i class="fa fa-home"></i> <span>Accueil</span></a>
+                            <a href="index-2.php"><i class="fa fa-home"></i> <span>Accueil</span></a>
                         </li>
 
                         <li>
-                            <a href="demande.html"><i class="fa fa-envelope-open-o"></i> <span>Liste de demande</span></a>
+                            <a href="demande.php"><i class="fa fa-envelope-open-o"></i> <span>Liste de demande</span></a>
                         </li>
                         
 						<li >
-                            <a href="emploi.html"><i class="fa fa-calendar-o"></i> <span>Emploi du temps</span></a>
+                            <a href="emploi.php"><i class="fa fa-calendar-o"></i> <span>Emploi du temps</span></a>
 						
 						</li>
                         <li >
-                            <a href="enseignant.html"><i class="fa fa-user"></i> <span>Enseignant</span></a>
+                            <a href="enseignant.php"><i class="fa fa-user"></i> <span>Enseignant</span></a>
 							
 						</li>
 						<li>
-                            <a href="notification.html" ><i class="fa fa-bell-o"></i> <span>Notifications</span></a>
+                            <a href="notification.php" ><i class="fa fa-bell-o"></i> <span>Notifications</span></a>
 
 						</li>
                         <li>
-                            <a href="calendar.html"><i class="fa fa-calendar"></i> <span>Calendrier</span></a>
+                            <a href="calendar.php"><i class="fa fa-calendar"></i> <span>Calendrier</span></a>
                         </li>
 
                     </ul>
@@ -118,4 +118,4 @@
 
 
 <!-- index22:59-->
-</html>
+</php>

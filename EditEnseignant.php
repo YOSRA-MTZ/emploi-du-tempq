@@ -19,7 +19,7 @@
     <div class="main-wrapper">
         <div class="header">
 			<div class="header-left">
-				<a href="index-2.html" class="logo">
+				<a href="index-2.php" class="logo">
 					<img src="assets/img/mundiap.png" width="40" height="40" > 
 				</a>
 			</div>
@@ -36,7 +36,7 @@
                            
                         </div>
                         <div class="topnav-dropdown-footer">
-                            <a href="notification.html">Voir tous les Notifications</a>
+                            <a href="notification.php">Voir tous les Notifications</a>
                         </div>
                     </div>
                 </li>
@@ -48,18 +48,18 @@
                         <span>Admin</span>
                     </a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="profile.html">My Profile</a>
+						<a class="dropdown-item" href="profile.php">My Profile</a>
 						
-						<a class="dropdown-item" href="login.html">Logout</a>
+						<a class="dropdown-item" href="login.php">Logout</a>
 					</div>
                 </li>
             </ul>
             <div class="dropdown mobile-user-menu float-right">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="profile.html">My Profile</a>
+                    <a class="dropdown-item" href="profile.php">My Profile</a>
                   
-                    <a class="dropdown-item" href="login.html">Logout</a>
+                    <a class="dropdown-item" href="login.php">Logout</a>
                 </div>
             </div>
         </div>
@@ -69,27 +69,27 @@
                     <ul>
                         <li class="menu-title">Menu</li>
                         <li >
-                            <a href="index-2.html"><i class="fa fa-home"></i> <span>Accueil</span></a>
+                            <a href="index-2.php"><i class="fa fa-home"></i> <span>Accueil</span></a>
                         </li>
 
                         <li>
-                            <a href="demande.html"><i class="fa fa-envelope-open-o"></i> <span>Liste de demande</span></a>
+                            <a href="demande.php"><i class="fa fa-envelope-open-o"></i> <span>Liste de demande</span></a>
                         </li>
                        
 						<li >
-                            <a href="emploi.html"><i class="fa fa-calendar-o"></i> <span>Emploi du temps</span></a>
+                            <a href="emploi.php"><i class="fa fa-calendar-o"></i> <span>Emploi du temps</span></a>
 						
 						</li>
                         <li class="active">
-                            <a href="enseignant.html"><i class="fa fa-user"></i> <span>Enseignant</span></a>
+                            <a href="enseignant.php"><i class="fa fa-user"></i> <span>Enseignant</span></a>
 							
 						<li>
 						<li>
-                            <a href="notification.html" ><i class="fa fa-bell-o"></i> <span>Notifications</span></a>
+                            <a href="notification.php" ><i class="fa fa-bell-o"></i> <span>Notifications</span></a>
 
 						</li>
                         <li>
-                            <a href="calendar.html"><i class="fa fa-calendar"></i> <span>Calendrier</span></a>
+                            <a href="calendar.php"><i class="fa fa-calendar"></i> <span>Calendrier</span></a>
                         </li>
 
                     </ul>
@@ -107,16 +107,8 @@
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2">
                         <form>
-                            <div class="row" style="margin-top:90px;">
-                              <!-- <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Nom Enseignant <span class="text-danger">*</span></label>
-                                        <input class="form-control" type="text" value="Mm.Saki">
-                                    </div>
-                                </div> -->
-                               
-                               
-                                <div class="col-sm-6">
+                            <div class="row" style="margin-top:50px;">
+                            <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Lundi</label>
                                         <select class="select" >
@@ -215,5 +207,5 @@
         
         
         <!-- Edit enseignant24:07-->
-    </html>
+    </php>
         

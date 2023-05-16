@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
   	<title>Login </title>
@@ -14,7 +14,7 @@
 	</head>
 	<body class="img js-fullheight" style="background-image: url(assets/img/mundia.png);">
         <div class="header-left">
-            <a href="index-2.html" class="logo">
+            <a href="index-2.php" class="logo">
                 <img src="assets/img/logo.png" width="150" height="40"  >
             </a>
         </div>
@@ -60,5 +60,5 @@
   <script src="assets/js/main.js"></script>
 
 	</body>
-</html>
+</php>
 

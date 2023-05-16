@@ -1,3 +1,21 @@
+<?php
+session_start();
+
+	include('config.php');
+    
+if(isset($_POST['search'])) {
+    $search_term = mysqli_real_escape_string($mysqli, $_POST['search_term']);
+    $sql = "SELECT *, enseignant.nom_enseignant FROM disponibilite
+            JOIN enseignant ON disponibilite.id_enseignant = enseignant.id_enseignant
+            WHERE enseignant.nom_enseignant LIKE '%$search_term%'";
+} else {
+    $sql = "SELECT *, enseignant.nom_enseignant FROM disponibilite
+            JOIN enseignant ON disponibilite.id_enseignant = enseignant.id_enseignant";
+}
+
+$result = mysqli_query($mysqli, $sql);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,7 +37,7 @@
     <div class="main-wrapper">
         <div class="header">
 			<div class="header-left">
-				<a href="index-2.html" class="logo">
+				<a href="index-2.php" class="logo">
 					<img src="assets/img/mundiap.png" width="40" height="40" > 
 				</a>
 			</div>
@@ -36,7 +54,7 @@
                            
                         </div>
                         <div class="topnav-dropdown-footer">
-                            <a href="notification.html">Voir tous les Notifications</a>
+                            <a href="notification.php">Voir tous les Notifications</a>
                         </div>
                     </div>
                 </li>
@@ -48,18 +66,18 @@
                         <span>Admin</span>
                     </a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="profile.html">My Profile</a>
+						<a class="dropdown-item" href="profile.php">My Profile</a>
 						
-						<a class="dropdown-item" href="login.html">Logout</a>
+						<a class="dropdown-item" href="login.php">Logout</a>
 					</div>
                 </li>
             </ul>
             <div class="dropdown mobile-user-menu float-right">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="profile.html">My Profile</a>
+                    <a class="dropdown-item" href="profile.php">My Profile</a>
                   
-                    <a class="dropdown-item" href="login.html">Logout</a>
+                    <a class="dropdown-item" href="login.php">Logout</a>
                 </div>
             </div>
         </div>
@@ -69,27 +87,27 @@
                     <ul>
                         <li class="menu-title">Menu</li>
                         <li >
-                            <a href="index-2.html"><i class="fa fa-home"></i> <span>Accueil</span></a>
+                            <a href="index-2.php"><i class="fa fa-home"></i> <span>Accueil</span></a>
                         </li>
 
                         <li>
-                            <a href="demande.html"><i class="fa fa-envelope-open-o"></i> <span>Liste de demande</span></a>
+                            <a href="demande.php"><i class="fa fa-envelope-open-o"></i> <span>Liste de demande</span></a>
                         </li>
                        
 						<li >
-                            <a href="emploi.html"><i class="fa fa-calendar-o"></i> <span>Emploi du temps</span></a>
+                            <a href="emploi.php"><i class="fa fa-calendar-o"></i> <span>Emploi du temps</span></a>
 						
 						</li>
                         <li class="active">
-                            <a href="enseignant.html"><i class="fa fa-user"></i> <span>Enseignant</span></a>
+                            <a href="enseignant.php"><i class="fa fa-user"></i> <span>Enseignant</span></a>
 							
 						<li>
 						<li>
-                            <a href="notification.html" ><i class="fa fa-bell-o"></i> <span>Notifications</span></a>
+                            <a href="notification.php" ><i class="fa fa-bell-o"></i> <span>Notifications</span></a>
 
 						</li>
                         <li>
-                            <a href="calendar.html"><i class="fa fa-calendar"></i> <span>Calendrier</span></a>
+                            <a href="calendar.php"><i class="fa fa-calendar"></i> <span>Calendrier</span></a>
                         </li>
 
                     </ul>
@@ -104,26 +122,28 @@
                     </div>
                 </div>
                
-                
+                <form method="post" action="">
                 <div class="row filter-row" style="margin-top:5%">
                     <div class="col-sm-12 col-md-6" >
                         <div class="form-group form-focus">
                             <label class="focus-label">Nom de l'enseignant</label>
-                            <input type="text" class="form-control floating">
+                            <input type="text" class="form-control floating" name="search_term">
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-2">
-                        <a href="#" class="btn btn-success btn-block"> <i class="fa fa-search" aria-hidden="true"></i> Search </a>
+                    <button type="submit" name="search"class="btn btn-success btn-block"><i class="fa fa-search" aria-hidden="true"></i></button>
+                      
                     </div>
-                    <div class="col-sm-12 col-md-4">
-                        <a href="AddEnseignant.html" class="btn btn-primary float-right d-flex align-items-center" style="gap:12px;"><i class="fa fa-plus" aria-hidden="true"></i>  Add Enseignant</a>
+                    <div class="col-sm-12 col-md-4 ">
+                        <a href="AddEnseignant.php" class="btn btn-primary float-right d-flex align-items-center" style="gap:12px;"><i class="fa fa-plus" aria-hidden="true"></i>  Add Enseignant</a>
                     </div>       
                
                 </div>
+                </form>
                 <div class="row">
                     <div class="col-lg-12">
-						<div class="table-responsive">
-                            <table class="table table-striped custom-table mb-0">
+						<div class="table-wrapper">
+                            <table class="fl-table">
                                 <thead>
                                     <tr>
                                         <th>Enseignant</th>
@@ -139,18 +159,90 @@
                                     </tr>
                                    
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Mm.Saki</td>
-                                        <td>PM </td>
-                                        <td> -</td>
-                                        <td>AM </td>
-                                        <td>PM/AM </td>
-                                        <td> -</td>
-                                        <td> -</td>
-                                      <td>  <a href="EditEnseignant.html" style="margin-right:10px; color:green;" >Edit</a>
-                                        <a href="#" style="margin-right:10px; color:red;" >Delete</a>
-                                      </td> 
+                                <tbody >
+                                <?php while ($row = mysqli_fetch_array($result)) {
+
+                                    echo "<tr>";
+                                    echo "<td>". $row['nom_enseignant'] ."</td>"; 
+
+                                    echo "<td>";
+                                            if ($row['lundi'] == 1) {
+                                            echo "AM";
+                                            } elseif ($row['lundi'] == 2) {
+                                            echo "PM";
+                                            } elseif ($row['lundi'] == 3) {
+                                            echo "AM/PM";
+                                            } else {
+                                            echo "-";
+                                            }
+                                    echo "</td>";
+
+                                    echo "<td>";
+                                            if ($row['mardi'] == 1) {
+                                            echo "AM";
+                                            } elseif ($row['mardi'] == 2) {
+                                            echo "PM";
+                                            } elseif ($row['mardi'] == 3) {
+                                            echo "AM/PM";
+                                            } else {
+                                            echo "-";
+                                            }
+                                    echo "</td>";
+
+                                    echo "<td>";
+                                            if ($row['mercredi'] == 1) {
+                                            echo "AM";
+                                            } elseif ($row['mercredi'] == 2) {
+                                            echo "PM";
+                                            } elseif ($row['mercredi'] == 3) {
+                                            echo "AM/PM";
+                                            } else {
+                                            echo "-";
+                                            }
+                                    echo "</td>";
+
+                                     echo "<td>";
+                                            if ($row['jeudi'] == 1) {
+                                              echo "AM";
+                                            } elseif ($row['jeudi'] == 2) {
+                                              echo "PM";
+                                            } elseif ($row['jeudi'] == 3) {
+                                              echo "AM/PM";
+                                            } else {
+                                              echo "-";
+                                            }
+                                     echo "</td>";
+
+                                     echo "<td>";
+                                            if ($row['vendredi'] == 1) {
+                                            echo "AM";
+                                            } elseif ($row['vendredi'] == 2) {
+                                            echo "PM";
+                                            } elseif ($row['vendredi'] == 3) {
+                                            echo "AM/PM";
+                                            } else {
+                                            echo "-";
+                                            }
+                                    echo "</td>";
+
+                                    echo "<td>";
+                                  
+                                            if ($row['samedi'] == 1) {
+                                            echo "AM";
+                                            } elseif ($row['samedi'] == 2) {
+                                            echo "PM";
+                                            } elseif ($row['samedi'] == 3) {
+                                            echo "AM/PM";
+                                            } else {
+                                            echo "-";
+                                            }
+                                    echo "</td>";
+                                     echo "<td> <a href=\"EditEnseignant.php?id=". $row['id_dispo'] ."\" style=\"margin-right:10px; color:green;\">Edit</a>
+                                        <a href=\"delete.php?id=". $row['id_dispo'] ."\" style=\"margin-right:10px; color:red;\" onClick=\"return confirm('Êtes-vous sûr de vouloir supprimer cette disponibilité ?');\">Delete</a></td> ";    
+                                    echo "</tr>";
+                                } ?>
+
+                                                                    
                                        
                                 </tbody>
 
@@ -174,4 +266,50 @@
 
 
 <!-- attendance23:24-->
-</html>
+</php>
+<style>
+
+
+/* Table Styles */
+
+
+.fl-table {
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: normal;
+    border: none;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    white-space: nowrap;    
+    background-color: white;
+	
+}
+
+.fl-table td, .fl-table th {
+    text-align: center;
+    padding: 8px;
+}
+
+.fl-table td {
+    border-right: 1px solid #f8f8f8;
+    font-size: 15px;
+}
+
+.fl-table thead th {
+    color: #ffffff;
+    background: #1977cc;
+}
+
+
+.fl-table thead th:nth-child(odd) {
+    color: #ffffff;
+    background: #1977cc;
+}
+
+.fl-table tr:nth-child(even) {
+    background: #F8F8F8;
+}
+
+
+</style>
