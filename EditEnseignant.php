@@ -107,16 +107,8 @@
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2">
                         <form>
-                            <div class="row" style="margin-top:90px;">
-                              <!-- <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Nom Enseignant <span class="text-danger">*</span></label>
-                                        <input class="form-control" type="text" value="Mm.Saki">
-                                    </div>
-                                </div> -->
-                               
-                               
-                                <div class="col-sm-6">
+                            <div class="row" style="margin-top:50px;">
+                            <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Lundi</label>
                                         <select class="select" >

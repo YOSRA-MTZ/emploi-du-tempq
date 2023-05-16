@@ -65,7 +65,6 @@ CREATE TABLE etudiant(
 CREATE TABLE enseignant(
         id_enseignant     Int  Auto_increment  NOT NULL ,
         nom_enseignant    Varchar (50) NOT NULL ,
-        prenom_enseignant Varchar (50) NOT NULL ,
         email_enseignant  Varchar (50) NOT NULL ,
         adresse           VARCHAR (50) NOT NULL,
         telephone         VARCHAR(50)NOT NULL,
