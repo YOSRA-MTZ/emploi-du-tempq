@@ -21,7 +21,7 @@
     <div class="main-wrapper">
         <div class="header">
 			<div class="header-left">
-                <a href="enseignant.html" class="logo">
+                <a href="enseignant.php" class="logo">
 					<img src="assets/img/mundiap.png" width="40" height="40" > 
 				</a>
 			</div>
@@ -38,7 +38,7 @@
                           
                             </div>
                             <div class="topnav-dropdown-footer">
-                                <a href="notification.html">Voir tous les Notifications</a>
+                                <a href="notification.php">Voir tous les Notifications</a>
                             </div>
                     </div>
                 </li>
@@ -50,18 +50,18 @@
                         <span>Prof</span>
                     </a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="profile.html">My Profile</a>
+						<a class="dropdown-item" href="profile.php">My Profile</a>
 						
-						<a class="dropdown-item" href="login.html">Logout</a>
+						<a class="dropdown-item" href="login.php">Logout</a>
 					</div>
                 </li>
             </ul>
             <div class="dropdown mobile-user-menu float-right">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="profile.html">My Profile</a>
+                    <a class="dropdown-item" href="profile.php">My Profile</a>
                    
-                    <a class="dropdown-item" href="login.html">Logout</a>
+                    <a class="dropdown-item" href="login.php">Logout</a>
                 </div>
             </div>
         </div>
@@ -71,23 +71,23 @@
                     <ul>
                         <li class="menu-title">Menu</li>
                         <li class="active">
-                            <a href="enseignant.html"><i class="fa fa-home"></i> <span>Accueil</span></a>
+                            <a href="enseignant.php"><i class="fa fa-home"></i> <span>Accueil</span></a>
                         </li>
                         
                         <li >
-                            <a href="monemploie.html"><i class="fa fa-user"></i> <span>Mon emploie</span></a>
+                            <a href="monemploie.php"><i class="fa fa-user"></i> <span>Mon emploie</span></a>
 						</li>
                         
                         <li>
-                            <a href="demande.html"><i class="fa fa-envelope-open-o"></i> <span>Demande</span></a>
+                            <a href="demande.php"><i class="fa fa-envelope-open-o"></i> <span>Demande</span></a>
                         </li>
                         
 						<li >
-                            <a href="classe.html"><i class="fa fa-user"></i> <span>Classes</span></a>
+                            <a href="classe.php"><i class="fa fa-user"></i> <span>Classes</span></a>
 						</li>
 
                         <li>
-                            <a href="notification.html"><i class="fa fa-bell-o"></i> <span>Notification</span></a>
+                            <a href="notification.php"><i class="fa fa-bell-o"></i> <span>Notification</span></a>
 
 						</li>
 
@@ -103,7 +103,7 @@
                     </div>
 
                     <!-- <div class="col-sm-5 col-6 text-right m-b-30">
-                        <a href="edit-profile.html" class="btn btn-primary btn-rounded"><i class="fa fa-plus"></i> Edit Profile</a>
+                        <a href="edit-profile.php" class="btn btn-primary btn-rounded"><i class="fa fa-plus"></i> Edit Profile</a>
                     </div> -->
                 </div>
                 <div class="card-box profile-header">
@@ -169,4 +169,4 @@
 
 
 <!-- profile23:03-->
-</html>
+</php>

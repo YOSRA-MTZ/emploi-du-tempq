@@ -21,8 +21,8 @@
     <div class="main-wrapper">
         <div class="header">
 			<div class="header-left">
-				<a href="etudiant.html" class="logo">
-					<img src="assets/img/mundiap.png" width="40" height="40"> 
+                <a href="enseignant.php" class="logo">
+					<img src="assets/img/mundiap.png" width="40" height="40" > 
 				</a>
 			</div>
 			<a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
@@ -38,7 +38,7 @@
                             
                         </div>
                         <div class="topnav-dropdown-footer">
-                            <a href="notification.html">Voir tous les Notifications</a>
+                            <a href="notification.php">Voir tous les Notifications</a>
                         </div>
                     </div>
                 </li>
@@ -47,21 +47,21 @@
                     <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
                         <span class="user-img"><img class="rounded-circle" src="assets/img/user.jpg" width="40" alt="Admin">
 							<span class="status online"></span></span>
-                        <span>Etudiant</span>
+                        <span>Prof</span>
                     </a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="profile.html">My Profile</a>
-						
-						<a class="dropdown-item" href="login.html">Logout</a>
+						<a class="dropdown-item" href="profile.php">My Profile</a>
+					
+						<a class="dropdown-item" href="login.php">Logout</a>
 					</div>
                 </li>
             </ul>
             <div class="dropdown mobile-user-menu float-right">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="profile.html">My Profile</a>
-                  
-                    <a class="dropdown-item" href="login.html">Logout</a>
+                    <a class="dropdown-item" href="profile.php">My Profile</a>
+                    
+                    <a class="dropdown-item" href="login.php">Logout</a>
                 </div>
             </div>
         </div>
@@ -71,15 +71,24 @@
                     <ul>
                         <li class="menu-title">Menu</li>
                         <li>
-                            <a href="etudiant.html"><i class="fa fa-home"></i> <span>Accueil</span></a>
+                            <a href="enseignant.php"><i class="fa fa-home"></i> <span>Accueil</span></a>
                         </li>
 
                         <li >
-                            <a href="monemploie.html"><i class="fa fa-user"></i> <span>Mon emploi</span></a>
+                            <a href="monemploie.php"><i class="fa fa-user"></i> <span>Mon emploie</span></a>
+						</li>
+
+                        <li>
+                            <a href="demande.php"><i class="fa fa-envelope-open-o"></i> <span>Demande</span></a>
+                        </li>
+                        
+						<li>
+                            <a href="classe.php"><i class="fa fa-user"></i> <span>Classes</span></a>
 						</li>
 
                         <li class="active">
-							<a href="notification.html"><i class="fa fa-bell-o"></i> <span>Notifications</span></a>
+                            <a href="notification.php"><i class="fa fa-bell-o"></i> <span>Notification</span></a>
+
 						</li>
                         
                     </ul>
@@ -90,7 +99,7 @@
             <div class="content">
                 <div class="row">
                     <div class="col-sm-12">
-                        <h4 class="page-title">Notifications</h4>
+                        <h4 class="page-title">Notification</h4>
                     </div>
                 </div>
                 <div class="row">
@@ -100,13 +109,13 @@
                                 <ul class="activity-list">
                                     <li>
                                         <div class="activity-user">
-                                            <a href="profile.html" title="Lesley Grauer" data-toggle="tooltip" class="avatar">
+                                            <a href="profile.php" title="Lesley Grauer" data-toggle="tooltip" class="avatar">
                                                 <img alt="Lesley Grauer" src="assets/img/user.jpg" class="img-fluid rounded-circle">
                                             </a>
                                         </div>
                                         <div class="activity-content">
                                             <div class="timeline-content">
-                                                <a href="profile.html" class="name">Lesley Grauer</a> added new task <a href="#">Hospital Administration</a>
+                                                <a href="profile.php" class="name">Lesley Grauer</a> added new task <a href="#">Hospital Administration</a>
                                                 <span class="time">4 mins ago</span>
                                             </div>
                                         </div>
@@ -114,11 +123,11 @@
                                     </li>
                                     <li>
                                         <div class="activity-user">
-                                            <a href="profile.html" class="avatar" title="Jeffery Lalor" data-toggle="tooltip">L</a>
+                                            <a href="profile.php" class="avatar" title="Jeffery Lalor" data-toggle="tooltip">L</a>
                                         </div>
                                         <div class="activity-content">
                                             <div class="timeline-content">
-                                                <a href="profile.html" class="name">Jeffery Lalor</a> added <a href="profile.html" class="name">Loren Gatlin</a> and <a href="profile.html" class="name">Tarah Shropshire</a> to project <a href="#">Patient appointment booking</a>
+                                                <a href="profile.php" class="name">Jeffery Lalor</a> added <a href="profile.php" class="name">Loren Gatlin</a> and <a href="profile.php" class="name">Tarah Shropshire</a> to project <a href="#">Patient appointment booking</a>
                                                 <span class="time">6 mins ago</span>
                                             </div>
                                         </div>
@@ -126,13 +135,13 @@
                                     </li>
                                     <li>
                                         <div class="activity-user">
-                                            <a href="profile.html" title="Catherine Manseau" data-toggle="tooltip" class="avatar">
+                                            <a href="profile.php" title="Catherine Manseau" data-toggle="tooltip" class="avatar">
                                                 <img alt="Catherine Manseau" src="assets/img/user.jpg" class="img-fluid rounded-circle">
                                             </a>
                                         </div>
                                         <div class="activity-content">
                                             <div class="timeline-content">
-                                                <a href="profile.html" class="name">Catherine Manseau</a> completed task <a href="#">Appointment booking with payment gateway</a>
+                                                <a href="profile.php" class="name">Catherine Manseau</a> completed task <a href="#">Appointment booking with payment gateway</a>
                                                 <span class="time">12 mins ago</span>
                                             </div>
                                         </div>
@@ -146,7 +155,7 @@
                                         </div>
                                         <div class="activity-content">
                                             <div class="timeline-content">
-                                                <a href="profile.html" class="name">Bernardo Galaviz</a> changed the task name <a href="#">Doctor available module</a>
+                                                <a href="profile.php" class="name">Bernardo Galaviz</a> changed the task name <a href="#">Doctor available module</a>
                                                 <span class="time">1 day ago</span>
                                             </div>
                                         </div>
@@ -154,13 +163,13 @@
                                     </li>
                                     <li>
                                         <div class="activity-user">
-                                            <a href="profile.html" title="Mike Litorus" data-toggle="tooltip" class="avatar">
+                                            <a href="profile.php" title="Mike Litorus" data-toggle="tooltip" class="avatar">
                                                 <img alt="Mike Litorus" src="assets/img/user.jpg" class="img-fluid rounded-circle">
                                             </a>
                                         </div>
                                         <div class="activity-content">
                                             <div class="timeline-content">
-                                                <a href="profile.html" class="name">Mike Litorus</a> added new task <a href="#">Patient and Doctor video conferencing</a>
+                                                <a href="profile.php" class="name">Mike Litorus</a> added new task <a href="#">Patient and Doctor video conferencing</a>
                                                 <span class="time">2 days ago</span>
                                             </div>
                                         </div>
@@ -168,13 +177,13 @@
                                     </li>
                                     <li>
                                         <div class="activity-user">
-                                            <a href="profile.html" title="Jeffery Lalor" data-toggle="tooltip" class="avatar">
+                                            <a href="profile.php" title="Jeffery Lalor" data-toggle="tooltip" class="avatar">
                                                 <img alt="Jeffery Lalor" src="assets/img/user.jpg" class="img-fluid rounded-circle">
                                             </a>
                                         </div>
                                         <div class="activity-content">
                                             <div class="timeline-content">
-                                                <a href="profile.html" class="name">Jeffery Lalor</a> added <a href="profile.html" class="name">Jeffrey Warden</a> and <a href="profile.html" class="name">Bernardo Galaviz</a> to the task of <a href="#">Private chat module</a>
+                                                <a href="profile.php" class="name">Jeffery Lalor</a> added <a href="profile.php" class="name">Jeffrey Warden</a> and <a href="profile.php" class="name">Bernardo Galaviz</a> to the task of <a href="#">Private chat module</a>
                                                 <span class="time">7 days ago</span>
                                             </div>
                                         </div>
@@ -200,4 +209,4 @@
 
 
 <!-- activities22:59-->
-</html>
+</php>
