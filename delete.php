@@ -3,10 +3,10 @@ session_start();
 
 include('config.php');
 
-if(isset($_GET['id']) && !empty($_GET['id'])) {
-    $id = $_GET['id'];
+if(isset($_GET['id_dispo']) && !empty($_GET['id_dispo'])) {
+    $id_dispo = $_GET['id_dispo'];
     
-    $sql = mysqli_query($mysqli,"DELETE FROM disponibilite WHERE id_dispo = $id");
+    $sql = mysqli_query($mysqli,"DELETE FROM disponibilite WHERE id_dispo = $id_dispo");
     
     header("Location: enseignant.php");
 } else {
