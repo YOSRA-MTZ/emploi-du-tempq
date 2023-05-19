@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-    <title>mundiapolis</title>
+    <title>Mundiapolis</title>
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
@@ -84,7 +84,7 @@
 						
 						</li>
                         <li >
-                            <a href="enseignant.php"><i class="fa fa-user"></i> <span>Enseignant</span></a>
+                        <a href="disponibilite.php"><i class="fa fa-list"></i> <span>Disponibilité enseignant</span></a>
 							
 						<li>
 						<li>
@@ -94,7 +94,13 @@
                         <li>
                             <a href="calendar.php"><i class="fa fa-calendar"></i> <span>Calendrier</span></a>
                         </li>
-
+                        <li class="submenu">
+                        <a href="#"><i class="fa fa-cog"></i> <span> Paramétrage </span> <span class="menu-arrow"></span></a>
+                        <ul style="display: none;">
+                            <li class="active"><a href="enseignant.php"><i class="fa fa-user"></i>Enseignant</a></li>
+                            
+                        </ul>
+                    </li>
                     </ul>
                 </div>
             </div>
@@ -173,4 +179,4 @@
 
 
 <!-- profile23:03-->
-</php>
+</html>

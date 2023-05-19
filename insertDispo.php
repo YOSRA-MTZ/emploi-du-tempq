@@ -15,13 +15,13 @@ if( empty($enseignant ) ){
 
             echo "<SCRIPT> //not showing me this
                 alert('$message')
-                window.location.replace('AddEnseignant.php');
+                window.location.replace('AddDispo.php');
             </SCRIPT>";
             exit;
 } else {
     $result = mysqli_query($mysqli, "INSERT INTO disponibilite(lundi,mardi,mercredi,jeudi,vendredi,samedi,id_enseignant) 
     VALUES('$lundi','$mardi','$mercredi','$jeudi','$vendredi','$samedi','$enseignant')");
   
-   header("Location:enseignant.php");
+   header("Location:disponibilite.php");
 
 }?>

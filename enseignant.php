@@ -1,26 +1,8 @@
-<?php
-session_start();
-
-	include('config.php');
-    
-if(isset($_POST['search'])) {
-    $search_term = mysqli_real_escape_string($mysqli, $_POST['search_term']);
-    $sql = "SELECT *, enseignant.nom_enseignant FROM disponibilite
-            JOIN enseignant ON disponibilite.id_enseignant = enseignant.id_enseignant
-            WHERE enseignant.nom_enseignant LIKE '%$search_term%'";
-} else {
-    $sql = "SELECT *, enseignant.nom_enseignant FROM disponibilite
-            JOIN enseignant ON disponibilite.id_enseignant = enseignant.id_enseignant";
-}
-
-$result = mysqli_query($mysqli, $sql);
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
 
-<!-- attendance23:24-->
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
@@ -98,8 +80,8 @@ $result = mysqli_query($mysqli, $sql);
                             <a href="emploi.php"><i class="fa fa-calendar-o"></i> <span>Emploi du temps</span></a>
 						
 						</li>
-                        <li class="active">
-                            <a href="enseignant.php"><i class="fa fa-user"></i> <span>Enseignant</span></a>
+                        <li >
+                            <a href="disponibilite.php"><i class="fa fa-list"></i><span>Disponibilité enseignant</span></a>
 							
 						<li>
 						<li>
@@ -109,209 +91,98 @@ $result = mysqli_query($mysqli, $sql);
                         <li>
                             <a href="calendar.php"><i class="fa fa-calendar"></i> <span>Calendrier</span></a>
                         </li>
-
+                        <li class="submenu">
+                        <a href="#"><i class="fa fa-cog"></i> <span> Paramétrage </span> <span class="menu-arrow"></span></a>
+                        <ul style="display: none;">
+                            <li class="active"><a href="enseignant.php"><i class="fa fa-user"></i>Enseignant</a></li>
+                            
+                        </ul>
+                    </li>
                     </ul>
                 </div>
             </div>
-        </div>
-        <div class="page-wrapper">
+        </div><div class="page-wrapper">
             <div class="content">
                 <div class="row">
-                    <div class="col-sm-12">
-                        <h1 >Liste des Enseignants</h1>
+                    <div class="col-sm-4 ">
+                        <h2>Liste des Enseignants</h2>
+                    </div>
+                    <div class="col-sm-8 col-9 text-right m-b-20">
+                        <a href="add_enseignant.php" class="btn btn-primary float-right btn-rounded"><i class="fa fa-plus"></i> Ajouter Enseignant</a>
                     </div>
                 </div>
-               
-                <form method="post" action="">
-                <div class="row filter-row" style="margin-top:5%">
-                    <div class="col-sm-12 col-md-6" >
+                <div class="row filter-row">
+                    <div class="col-sm-12 col-md-6">
                         <div class="form-group form-focus">
-                            <label class="focus-label">Nom de l'enseignant</label>
-                            <input type="text" class="form-control floating" name="search_term">
+                            <label class="focus-label">Nom d'enseignant</label>
+                            <input type="text" class="form-control floating">
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-2">
-                    <button type="submit" name="search"class="btn btn-success btn-block"><i class="fa fa-search" aria-hidden="true"></i></button>
-                      
+                   
+                    
+                    <div class="col-sm-6 col-md-3">
+                        <a href="#" class="btn btn-success btn-block"><i class="fa fa-search" aria-hidden="true"></i></a>
                     </div>
-                    <div class="col-sm-12 col-md-4 ">
-                        <a href="AddEnseignant.php" class="btn btn-primary float-right d-flex align-items-center" style="gap:12px;"><i class="fa fa-plus" aria-hidden="true"></i>  Add Enseignant</a>
-                    </div>       
-               
                 </div>
-                </form>
                 <div class="row">
-                    <div class="col-lg-12">
-						<div class="table-wrapper">
-                            <table class="fl-table">
+                    <div class="col-md-12">
+						<div class="table-responsive">
+                            <table class="table table-striped custom-table">
                                 <thead>
                                     <tr>
-                                        <th>Enseignant</th>
-                                        <th>Lundi</th>
-                                        <th>Mardi</th>
-                                        <th>Mercredi</th>
-                                        <th>Jeudi</th>
-                                        <th>Vendredi</th>
-                                        <th>Samedi</th>
-                                        
-                                        <th>Action</th>
+                                        <th >Nom d'enseignant</th>
                                        
+                                        <th>Email</th>
+                                        <th>Telephone</th>
+                                        <th>Adresse</th>
+                                        <th>Statut vacataire</th>
+                                        <th class="text-right">Action</th>
                                     </tr>
-                                   
                                 </thead>
-                                <tbody >
-                                <?php while ($row = mysqli_fetch_array($result)) {
-
-                                    echo$row["lundi"];
-
-                                    echo "<tr>";
-                                    echo "<td>". $row['nom_enseignant'] ."</td>"; 
-
-                                    echo "<td>";
-                                            if ($row['lundi'] == 1) {
-                                            echo "AM";
-                                            } elseif ($row['lundi'] == 2) {
-                                            echo "PM";
-                                            } elseif ($row['lundi'] == 3) {
-                                            echo "AM/PM";
-                                            } else {
-                                            echo "-";
-                                            }
-                                    echo "</td>";
-
-                                    echo "<td>";
-                                            if ($row['mardi'] == 1) {
-                                            echo "AM";
-                                            } elseif ($row['mardi'] == 2) {
-                                            echo "PM";
-                                            } elseif ($row['mardi'] == 3) {
-                                            echo "AM/PM";
-                                            } else {
-                                            echo "-";
-                                            }
-                                    echo "</td>";
-
-                                    echo "<td>";
-                                            if ($row['mercredi'] == 1) {
-                                            echo "AM";
-                                            } elseif ($row['mercredi'] == 2) {
-                                            echo "PM";
-                                            } elseif ($row['mercredi'] == 3) {
-                                            echo "AM/PM";
-                                            } else {
-                                            echo "-";
-                                            }
-                                    echo "</td>";
-
-                                     echo "<td>";
-                                            if ($row['jeudi'] == 1) {
-                                              echo "AM";
-                                            } elseif ($row['jeudi'] == 2) {
-                                              echo "PM";
-                                            } elseif ($row['jeudi'] == 3) {
-                                              echo "AM/PM";
-                                            } else {
-                                              echo "-";
-                                            }
-                                     echo "</td>";
-
-                                     echo "<td>";
-                                            if ($row['vendredi'] == 1) {
-                                            echo "AM";
-                                            } elseif ($row['vendredi'] == 2) {
-                                            echo "PM";
-                                            } elseif ($row['vendredi'] == 3) {
-                                            echo "AM/PM";
-                                            } else {
-                                            echo "-";
-                                            }
-                                    echo "</td>";
-
-                                    echo "<td>";
-                                  
-                                            if ($row['samedi'] == 1) {
-                                            echo "AM";
-                                            } elseif ($row['samedi'] == 2) {
-                                            echo "PM";
-                                            } elseif ($row['samedi'] == 3) {
-                                            echo "AM/PM";
-                                            } else {
-                                            echo "-";
-                                            }
-                                    echo "</td>";
-                                     echo "<td> <a href=\"EditEnseignant.php?id_dispo=". $row['id_dispo'] ."\" style=\"margin-right:10px; color:green;\">Edit</a>
-                                        <a href=\"delete.php?id_dispo=". $row['id_dispo'] ."\" style=\"margin-right:10px; color:red;\" onClick=\"return confirm('Êtes-vous sûr de vouloir supprimer cette disponibilité ?');\">Delete</a></td> ";    
-                                    echo "</tr>";
-                                } ?>
-
-                                                                    
-                                       
+                                <tbody>
+                                    
+									<tr>
+                                        <td>
+											<img width="28" height="28" src="assets/img/user.jpg" class="rounded-circle" alt=""> <h2>Zoe Butler</h2>
+										</td>
+                                        
+                                        <td>zoebutler@example.com</td>
+                                        <td>444-555-9999</td>
+                                        <td>19 May 2012</td>
+                                        <td>
+                                            <span class="custom-badge status-grey">Vacataire</span>
+                                        </td>
+                                        <td class="text-right">
+                                            <div class="dropdown dropdown-action">
+                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="edit_enseignant.php" style="color:green;"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                                    <a class="dropdown-item" href="delete_enseignant.php"style="color:red;" ><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 </tbody>
-
                             </table>
-                           
 						</div>
                     </div>
                 </div>
             </div>
-            
-        </div>
+           
     </div>
     <div class="sidebar-overlay" data-reff=""></div>
     <script src="assets/js/jquery-3.2.1.min.js"></script>
 	<script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery.dataTables.min.js"></script>
+    <script src="assets/js/dataTables.bootstrap4.min.js"></script>
     <script src="assets/js/jquery.slimscroll.js"></script>
     <script src="assets/js/select2.min.js"></script>
+    <script src="assets/js/moment.min.js"></script>
+    <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
     <script src="assets/js/app.js"></script>
 </body>
 
 
-<!-- attendance23:24-->
-</php>
-<style>
-
-
-/* Table Styles */
-
-
-.fl-table {
-    border-radius: 10px;
-    font-size: 15px;
-    font-weight: normal;
-    border: none;
-    border-collapse: collapse;
-    width: 100%;
-    max-width: 100%;
-    white-space: nowrap;    
-    background-color: white;
-	
-}
-
-.fl-table td, .fl-table th {
-    text-align: center;
-    padding: 8px;
-}
-
-.fl-table td {
-    border-right: 1px solid #f8f8f8;
-    font-size: 15px;
-}
-
-.fl-table thead th {
-    color: #ffffff;
-    background: #1977cc;
-}
-
-
-.fl-table thead th:nth-child(odd) {
-    color: #ffffff;
-    background: #1977cc;
-}
-
-.fl-table tr:nth-child(even) {
-    background: #F8F8F8;
-}
-
-
-</style>
+<!-- enseignant23:22-->
+</html>
