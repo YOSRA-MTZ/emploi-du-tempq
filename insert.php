@@ -5,10 +5,11 @@ include("config.php");
 $enseignant = $_POST['enseignant'];
 $lundi=$_POST['lundi'];
 $mardi=$_POST['mardi'];
-$mardi=$_POST['mercredi'];
-$mardi=$_POST['jeudi'];
-$mardi=$_POST['vendredi'];
-$mardi=$_POST['samedi'];
+$mercredi=$_POST['mercredi'];
+$jeudi=$_POST['jeudi'];
+$vendredi=$_POST['vendredi'];
+$samedi=$_POST['samedi'];
+$nom_enseignant=$_POST['nom_enseignant'];
 if( empty($enseignant ) ){
     $message = 'Veuillez selectionner un Enseignant.';
 

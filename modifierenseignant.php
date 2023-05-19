@@ -1,8 +1,9 @@
 <?php
-// including the database connection file
 include_once("config.php");
 
-
+// Vérifier si le formulaire a été soumis
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Récupérer les valeurs du formulaire
     $id_dispo = $_POST['id_dispo'];
     $lundi = $_POST['lundi'];
     $mardi = $_POST['mardi'];
@@ -10,9 +11,20 @@ include_once("config.php");
     $jeudi = $_POST['jeudi'];
     $vendredi = $_POST['vendredi'];
     $samedi = $_POST['samedi'];
-    $enseignant_id = $_POST['id_enseignant'];
+    $id_enseignant = $_POST['id_enseignant'];
 
-    $result = mysqli_query($mysqli, "UPDATE disponibilite SET lundi='$lundi', mardi='$mardi', mercredi='$mercredi', jeudi='$jeudi', vendredi='$vendredi', samedi='$samedi', id_enseignant='$enseignant_id' WHERE enseignant_id=$enseignant_id");
-    header("Location: enseignant.php");
+    // Mettre à jour la table disponibilite
+    $sql_dispo = "UPDATE disponibilite SET lundi='$lundi', mardi='$mardi', mercredi='$mercredi', jeudi='$jeudi', vendredi='$vendredi', samedi='$samedi',id_enseignant='$id_enseignant',id_dispo='$id_dispo' WHERE id_dispo='$id_dispo'";
+    $result_dispo = mysqli_query($mysqli, $sql_dispo);
 
+    
+
+    // Vérifier si les mises à jour ont été effectuées avec succès
+    if ($result_dispo) {
+       header("Location: enseignant.php");
+        exit();
+    } else {
+        echo "Erreur lors de la mise à jour des données.";
+    }
+}
 ?>

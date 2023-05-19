@@ -162,6 +162,8 @@ $result = mysqli_query($mysqli, $sql);
                                 <tbody >
                                 <?php while ($row = mysqli_fetch_array($result)) {
 
+                                    echo$row["lundi"];
+
                                     echo "<tr>";
                                     echo "<td>". $row['nom_enseignant'] ."</td>"; 
 

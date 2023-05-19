@@ -6,6 +6,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM disponibilite WHERE id_dispo='$id
 
 // Vérifier s'il y a des résultats dans la requête
 if ($res = mysqli_fetch_array($result)) {
+    $id_dispo = $res['id_dispo'];
     $lundi = $res['lundi'];
     $mardi = $res['mardi'];
     $mercredi = $res['mercredi'];
@@ -13,6 +14,7 @@ if ($res = mysqli_fetch_array($result)) {
     $vendredi = $res['vendredi'];
     $samedi = $res['samedi'];
     $enseignant_id = $res['id_enseignant'];
+    $nom_enseignant = $res['nom_enseignant'];
 }
 ?>
 <!DOCTYPE html>
@@ -118,8 +120,29 @@ if ($res = mysqli_fetch_array($result)) {
             <div class="content">
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2">
-                        <h3 value="<?php echo $enseignant_id; ?>">Edition du disponibilite d'Enseignant :
+                    <h3>Édition de la disponibilité de l'enseignant :
+<?php
+$sql = "SELECT enseignant.nom_enseignant
+        FROM disponibilite
+        INNER JOIN enseignant ON disponibilite.id_enseignant = enseignant.id_enseignant";
+$conn = new mysqli($databaseHost, $databaseUsername, $databasePassword, $databaseName);
+$result = $conn->query($sql);
+
+if ($result && $result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    echo $row['nom_enseignant'];
+} else {
+    echo "Nom de l'enseignant non disponible";
+}
+
+$conn->close();
+?>
+</h3>
+
+
                         </h3>
+                        
+
                     </div>
                 </div>
                 <div class="row">
@@ -127,28 +150,38 @@ if ($res = mysqli_fetch_array($result)) {
                         <form action="modifierenseignant.php" method="post" class="php">
                             <div class="row" style="margin-top:50px;">
                                 <div class="col-sm-6">
+                                    <input type="text" name="id_dispo" value="<?php echo $id_dispo; ?>" hidden>
+                                    <input type="text" name="id_enseignant" value="<?php echo $enseignant_id; ?>" hidden>
                                     <div class="form-group">
-                                        <label>Lundi</label>
-                                        <select class="select" name="lundi" >
-                                        <option value="-">-</option>
-                                        <option value="AM" <?php if ($lundi == 1) echo 'selected'; ?>>AM</option>
-                                        <option value="PM" <?php if ($lundi == 2) echo 'selected'; ?>>PM</option>
-                                        <option value="AM/PM" <?php if ($lundi == 3) echo 'selected'; ?>>AM/PM</option>
+                                    <label>Lundi</label>
+                                     <select class="select" name="lundi">
+                                       <option value="">-</option>
+                                            <?php
+                                                $result3 = mysqli_query($mysqli, "SELECT * FROM horaire");
+                                                    while ($rowa = mysqli_fetch_array($result3)) {
+                                             $selected = ($lundi == $rowa['id_horaire']) ? 'selected' : ''; // Vérifie si c'est l'option précédente sélectionnée
+                                              echo '<option value="' . $rowa['id_horaire'] . '" ' . $selected . '>' . $rowa['nom_horaire'] . '</option>';
+                                                 }
+                                                        ?>
+                                                           </select>
 
-                                        </select>
+                                        </div>
                                     </div>
-                                </div>
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Mardi</label>
                                         <select class="select" name="mardi" >
-                                            <option>-</option>
-                                            <option value="AM" <?php if ($mardi == 1) echo 'selected'; ?>>AM</option>
-                                            <option value="PM" <?php if ($mardi == 2) echo 'selected'; ?>>PM</option>
-                                            <option value="AM/PM" <?php if ($mardi == 3) echo 'selected'; ?>>AM/PM</option>
 
-                                        </select>
+                                        <option value="">-</option>
+                                              <?php
+                                 $result3 = mysqli_query($mysqli, "SELECT * FROM horaire");
+                                     while ($rowa = mysqli_fetch_array($result3)) {
+                            $selected = ($mardi == $rowa['id_horaire']) ? 'selected' : ''; // Vérifie si c'est l'option précédente sélectionnée
+                                echo '<option value="' . $rowa['id_horaire'] . '" ' . $selected . '>' . $rowa['nom_horaire'] . '</option>';
+                                      }
+                                          ?>
+                                                </select>
                                     </div>
                                 </div>
 
@@ -156,12 +189,15 @@ if ($res = mysqli_fetch_array($result)) {
                                     <div class="form-group">
                                         <label>Mercredi</label>
                                         <select class="select" name="mercredi" value="<?php echo $mercredi; ?>">
-                                            <option>-</option>
-                                            <option value="AM" <?php if ($mercredi == 1) echo 'selected'; ?>>AM</option>
-                                            <option value="PM" <?php if ($mercredi == 2) echo 'selected'; ?>>PM</option>
-                                            <option value="AM/PM" <?php if ($mercredi == 3) echo 'selected'; ?>>AM/PM</option>
-
-                                        </select>
+                                        <option value="">-</option>
+                                                <?php
+                                               $result3 = mysqli_query($mysqli, "SELECT * FROM horaire");
+                                                    while ($rowa = mysqli_fetch_array($result3)) {
+                                                    $selected = ($mercredi == $rowa['id_horaire']) ? 'selected' : ''; // Vérifie si c'est l'option précédente sélectionnée
+                                                       echo '<option value="' . $rowa['id_horaire'] . '" ' . $selected . '>' . $rowa['nom_horaire'] . '</option>';
+                                                            }
+                                                              ?>
+                                                       </select>
                                     </div>
                                 </div>
 
@@ -169,12 +205,15 @@ if ($res = mysqli_fetch_array($result)) {
                                     <div class="form-group">
                                         <label>Jeudi</label>
                                         <select class="select" name="jeudi" value="<?php echo $jeudi; ?>">
-                                            <option>-</option>
-                                            <option value="AM" <?php if ($jeudi == 1) echo 'selected'; ?>>AM</option>
-                                            <option value="PM" <?php if ($jeudi == 2) echo 'selected'; ?>>PM</option>
-                                            <option value="AM/PM" <?php if ($jeudi == 3) echo 'selected'; ?>>AM/PM</option>
-
-                                        </select>
+                                        <option value="">-</option>
+                                              <?php
+                                                  $result3 = mysqli_query($mysqli, "SELECT * FROM horaire");
+                                                     while ($rowa = mysqli_fetch_array($result3)) {
+                                                           $selected = ($jeudi == $rowa['id_horaire']) ? 'selected' : ''; // Vérifie si c'est l'option précédente sélectionnée
+                                                          echo '<option value="' . $rowa['id_horaire'] . '" ' . $selected . '>' . $rowa['nom_horaire'] . '</option>';
+                                                               }
+                                                                      ?>
+                                                                       </select>
                                     </div>
                                 </div>
 
@@ -182,12 +221,15 @@ if ($res = mysqli_fetch_array($result)) {
                                     <div class="form-group">
                                         <label>Vendredi</label>
                                         <select class="select" name="vendredi" value="<?php echo $vendredi; ?>">
-                                            <option>-</option>
-                                            <option value="AM" <?php if ($vendredi == 1) echo 'selected'; ?>>AM</option>
-                                        <option value="PM" <?php if ($vendredi == 2) echo 'selected'; ?>>PM</option>
-                                        <option value="AM/PM" <?php if ($vendredi == 3) echo 'selected'; ?>>AM/PM</option>
-
-                                        </select>
+                                        <option value="">-</option>
+                                            <?php
+                                            $result3 = mysqli_query($mysqli, "SELECT * FROM horaire");
+                                                       while ($rowa = mysqli_fetch_array($result3)) {
+                                                          $selected = ($vendredi == $rowa['id_horaire']) ? 'selected' : ''; // Vérifie si c'est l'option précédente sélectionnée
+                                                           echo '<option value="' . $rowa['id_horaire'] . '" ' . $selected . '>' . $rowa['nom_horaire'] . '</option>';
+                                                                }
+                                                                       ?>
+                                                                    </select>
                                     </div>
                                 </div>
 
@@ -195,12 +237,15 @@ if ($res = mysqli_fetch_array($result)) {
                                     <div class="form-group">
                                         <label>Samedi</label>
                                         <select class="select" name="samedi" value="<?php echo $samedi; ?>">
-                                            <option>-</option>
-                                            <option value="AM" <?php if ($samedi == 1) echo 'selected'; ?>>AM</option>
-                                        <option value="PM" <?php if ($samedi == 2) echo 'selected'; ?>>PM</option>
-                                        <option value="AM/PM" <?php if ($samedi == 3) echo 'selected'; ?>>AM/PM</option>
-
-                                        </select>
+                                            <option value="">-</option>
+                                            <?php
+                                              $result3 = mysqli_query($mysqli, "SELECT * FROM horaire");
+                                                 while ($rowa = mysqli_fetch_array($result3)) {
+                                            $selected = ($samedi == $rowa['id_horaire']) ? 'selected' : ''; // Vérifie si c'est l'option précédente sélectionnée
+                                                  echo '<option value="' . $rowa['id_horaire'] . '" ' . $selected . '>' . $rowa['nom_horaire'] . '</option>';
+                                                         }
+                                                        ?>
+                                                            </select>
                                     </div>
                                 </div>
 
