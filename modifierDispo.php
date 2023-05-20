@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Vérifier si les mises à jour ont été effectuées avec succès
     if ($result_dispo) {
-       header("Location: enseignant.php");
+       header("Location: disponibilite.php");
         exit();
     } else {
         echo "Erreur lors de la mise à jour des données.";

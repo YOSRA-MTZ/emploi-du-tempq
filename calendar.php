@@ -87,8 +87,7 @@
 						
 						</li>
                         <li >
-                            <a href="enseignant.php"><i class="fa fa-user"></i> <span>Enseignant</span></a>
-							
+                        <a href="disponibilite.php"><i class="fa fa-list"></i><span>Disponibilité enseignant</span></a>							
 						<li>
 						<li>
                             <a href="notification.php" ><i class="fa fa-bell-o"></i> <span>Notifications</span></a>
@@ -97,8 +96,14 @@
                         <li class="active">
                             <a href="calendar.php"><i class="fa fa-calendar"></i> <span>Calendrier</span></a>
                         </li>
-
-                    </ul>
+                        <li class="submenu">
+                        <a href="#"><i class="fa fa-cog"></i> <span> Paramétrage </span> <span class="menu-arrow"></span></a>
+                        <ul style="display: none;">
+                            <li class="active"><a href="enseignant.php"><i class="fa fa-user"></i>Enseignant</a></li>
+                            
+                        </ul>
+                    </li>
+                        </ul>
                 </div>
             </div>
         </div>
@@ -187,4 +192,4 @@
 
 
 <!-- calendar24:03-->
-</php>
+</html>

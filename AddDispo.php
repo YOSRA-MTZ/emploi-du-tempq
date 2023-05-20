@@ -4,7 +4,7 @@ include 'config.php'; ?>
 <html lang="en">
 
 
-<!-- attendance23:24-->
+
 
 <head>
     <meta charset="utf-8">
@@ -84,7 +84,7 @@ include 'config.php'; ?>
 
                         </li>
                         <li class="active">
-                            <a href="enseignant.php"><i class="fa fa-user"></i> <span>Enseignant</span></a>
+                        <a href="disponibilite.php"><i class="fa fa-list"></i> <span>Disponibilité enseignant</span></a>
 
                         <li>
                         <li>
@@ -94,7 +94,13 @@ include 'config.php'; ?>
                         <li>
                             <a href="calendar.php"><i class="fa fa-calendar"></i> <span>Calendrier</span></a>
                         </li>
-
+                        <li class="submenu">
+                        <a href="#"><i class="fa fa-cog"></i> <span> Paramétrage </span> <span class="menu-arrow"></span></a>
+                        <ul style="display: none;">
+                            <li class="active"><a href="enseignant.php"><i class="fa fa-user"></i>Enseignant</a></li>
+                            
+                        </ul>
+                    </li>
                     </ul>
                 </div>
             </div>
@@ -108,7 +114,7 @@ include 'config.php'; ?>
                 </div>
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2 m-t-30">
-                    <form action="insert.php" method="post" class="php">
+                    <form action="insertDispo.php" method="post" class="php">
                             <div class="row">
                                 <div class="col-sm-6 ">
                                     <div class="form-group">
@@ -253,7 +259,7 @@ include 'config.php'; ?>
                                 </div>
 
                                 <div class="m-t-20  text-center">
-                                    <button class="btn btn-primary submit-btn"><i class="fa fa-plus" aria-hidden="true"></i> Ajouter Enseignant</button>
+                                    <button class="btn btn-primary submit-btn" ><i class="fa fa-plus" aria-hidden="true"></i> Ajouter Disponibilité</button>
                                 </div>
                         </form>
                     </div>
@@ -273,4 +279,4 @@ include 'config.php'; ?>
 
 
 <!-- add-enseignant24:07-->
-</php>
+ </html>
