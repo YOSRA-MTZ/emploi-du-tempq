@@ -1,27 +1,29 @@
 <?php
 include_once("config.php");
-$id_dispo = $_GET['id_dispo'];
 
-$result = mysqli_query($mysqli, "SELECT * FROM disponibilite WHERE id_dispo='$id_dispo'");
+if (isset($_GET['id_dispo'])) {
+    $id_dispo = $_GET['id_dispo'];
 
-// Vérifier s'il y a des résultats dans la requête
-if ($res = mysqli_fetch_array($result)) {
-    $id_dispo = $res['id_dispo'];
-    $lundi = $res['lundi'];
-    $mardi = $res['mardi'];
-    $mercredi = $res['mercredi'];
-    $jeudi = $res['jeudi'];
-    $vendredi = $res['vendredi'];
-    $samedi = $res['samedi'];
-    $id_enseignant = $res['id_enseignant'];
-    $nom_enseignant = $res['nom_enseignant'];
+    $result = mysqli_query($mysqli, "SELECT disponibilite.*, enseignant.nom_enseignant FROM disponibilite INNER JOIN enseignant ON disponibilite.id_enseignant = enseignant.id_enseignant WHERE id_dispo='$id_dispo'");
+
+    // Check if there are any results in the query
+    if ($res = mysqli_fetch_array($result)) {
+        $id_dispo = $res['id_dispo'];
+        $lundi = $res['lundi'];
+        $mardi = $res['mardi'];
+        $mercredi = $res['mercredi'];
+        $jeudi = $res['jeudi'];
+        $vendredi = $res['vendredi'];
+        $samedi = $res['samedi'];
+        $id_enseignant = $res['id_enseignant'];
+        $nom_enseignant = $res['nom_enseignant'];
+    }
 }
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
-
-
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
@@ -31,13 +33,12 @@ if ($res = mysqli_fetch_array($result)) {
     <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/select2.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
 </head>
 
 <body>
     <div class="main-wrapper">
-        <div class="header">
-            <div class="header-left">
+        
+            <div class="heade<div class="header">r-left">
                 <a href="index-2.php" class="logo">
                     <img src="assets/img/mundiap.png" width="40" height="40">
                 </a>
@@ -125,24 +126,8 @@ if ($res = mysqli_fetch_array($result)) {
             <div class="content">
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2">
-                        <h3>Édition de la disponibilité de l'enseignant :
-                            <?php
-                            $sql = "SELECT enseignant.nom_enseignant, disponibilite.id_enseignant
-                                FROM disponibilite
-                                INNER JOIN enseignant ON disponibilite.id_enseignant = enseignant.id_enseignant";
-                            $conn = new mysqli($databaseHost, $databaseUsername, $databasePassword, $databaseName);
-                            $result = $conn->query($sql);
+                    <h3>Édition de la disponibilité de l'enseignant : <?php echo $nom_enseignant; ?></h3>
 
-                            if ($result && $result->num_rows > 0) {
-                                $row = $result->fetch_assoc();
-                                echo $row['nom_enseignant'];
-                            } else {
-                                echo "Nom de l'enseignant non disponible";
-                            }
-
-                            $conn->close();
-                            ?>
-                        </h3>
 
                     </div>
                 </div>
