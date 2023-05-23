@@ -112,36 +112,36 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2">
-                        <form>
+                    <form method="POST" action="insertEnseignant.php">
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Nom d'enseignant<span class="text-danger">*</span></label>
-                                        <input class="form-control" type="text">
+                                        <input class="form-control" type="text" name="nom_enseignant">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Adresse</label>
-                                        <input class="form-control" type="text">
+                                        <input class="form-control" type="text" name="adresse">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Téléphone <span class="text-danger">*</span></label>
-                                        <input class="form-control" type="text">
+                                        <input class="form-control" type="text" name="telephone">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Email <span class="text-danger">*</span></label>
-                                        <input class="form-control" type="email">
+                                        <input class="form-control" type="email" name="email_enseignant">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Mot de passe</label>
-                                        <input class="form-control" type="password">
+                                        <input class="form-control" type="password" name="password">
                                     </div>
                                 </div>
                                 
@@ -149,7 +149,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Statut</label>
-                                        <input class="form-control" type="text">
+                                        <input class="form-control" type="text" name="statut_enseignant">
                                     </div>
                                 </div>
                                 

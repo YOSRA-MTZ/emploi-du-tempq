@@ -2,16 +2,8 @@
 session_start();
 
 include('config.php');
-
-if (isset($_POST['search'])) {
-    $search_term = mysqli_real_escape_string($mysqli, $_POST['search_term']);
-    $sql = "SELECT *, enseignant.nom_enseignant FROM disponibilite
-            JOIN enseignant ON disponibilite.id_enseignant = enseignant.id_enseignant
-            WHERE enseignant.nom_enseignant LIKE '%$search_term%'";
-} else {
     $sql = "SELECT *, enseignant.nom_enseignant FROM disponibilite
             JOIN enseignant ON disponibilite.id_enseignant = enseignant.id_enseignant";
-}
 
 $result = mysqli_query($mysqli, $sql);
 
@@ -133,18 +125,15 @@ $result = mysqli_query($mysqli, $sql);
                 </div>
 
                 
-                    <div class="row filter-row">
-                        <div class="col-sm-12 col-md-6">
-                            <div class="form-group form-focus">
-                                <label class="focus-label">Nom de l'enseignant</label>
-                                <input type="text" class="form-control floating" name="search_term">
-                            </div>
+                    <<div class="row filter-row">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group form-focus">
+                            <input type="text" placeholder="Chercher enseignant ...." class="form-control floating" name="chercher_valeur">
                         </div>
-                        <div class="col-sm-6 col-md-3">
-                            <button type="submit" name="search" class="btn btn-success btn-block"><i class="fa fa-search" aria-hidden="true"></i></button>
-
-                        </div>
-
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <a href="#" class="btn btn-success btn-block"><i class="fa fa-search" aria-hidden="true"></i></a>
+                    </div>
 
                     </div>
             
@@ -272,6 +261,27 @@ $result = mysqli_query($mysqli, $sql);
     <script src="assets/js/jquery.slimscroll.js"></script>
     <script src="assets/js/select2.min.js"></script>
     <script src="assets/js/app.js"></script>
+    <script>
+    $(document).ready(function() {
+        // Événement de clic sur le bouton de recherche
+        $('a.btn-success').click(function() {
+            // Récupérer la valeur de recherche
+            var searchValue = $('input[name="chercher_valeur"]').val().toLowerCase();
+
+            // Parcourir toutes les lignes du tableau
+            $('table tbody tr').each(function() {
+                var rowText = $(this).text().toLowerCase();
+
+                // Afficher ou masquer les lignes en fonction de la correspondance avec la valeur de recherche
+                if (rowText.indexOf(searchValue) !== -1) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+    });
+</script>
 </body>
 
 
