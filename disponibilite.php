@@ -125,7 +125,7 @@ $result = mysqli_query($mysqli, $sql);
                 </div>
 
                 
-                    <<div class="row filter-row">
+                    <div class="row filter-row">
                     <div class="col-sm-12 col-md-6">
                         <div class="form-group form-focus">
                             <input type="text" placeholder="Chercher enseignant ...." class="form-control floating" name="chercher_valeur">

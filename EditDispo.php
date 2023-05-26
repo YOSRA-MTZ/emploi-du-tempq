@@ -38,7 +38,8 @@ if (isset($_GET['id_dispo'])) {
 <body>
     <div class="main-wrapper">
         
-            <div class="heade<div class="header">r-left">
+            <div class="header">
+            <div class="header-left">
                 <a href="index-2.php" class="logo">
                     <img src="assets/img/mundiap.png" width="40" height="40">
                 </a>

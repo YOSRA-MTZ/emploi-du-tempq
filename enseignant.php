@@ -3,8 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-    <title>Mundiapolis</title>
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/mundiap.png">    <title>Mundiapolis</title>
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/select2.min.css">
@@ -119,12 +118,12 @@
                                 <thead>
                                     <tr>
                                         <th>Nom d'enseignant</th>
-                                        <th>Mot de passe d'enseignant</th>
-                                        <th>Email d'enseignant</th>
-                                        <th>Adresse d'enseiggnant</th>
+                                        <th>Adresse d'enseignant</th>
                                         <th>Telephone d'enseignant</th>
+                                        <th>Email d'enseignant</th>
+                                        <th>Mot de passe d'enseignant</th>
                                         <th>Statut vacataire</th>
-                                        <th class="text-right">Action</th>
+                                        <th class="text-left">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -137,10 +136,10 @@
                                 while ($row = mysqli_fetch_array($result)) {
                                     echo "<tr>";
                                     echo "<td>". $row['nom_enseignant'] ."</td>";
-                                    echo "<td>". $row['password'] ."</td>";
-                                    echo "<td>". $row['email_enseignant'] ."</td>";
                                     echo "<td>". $row['adresse'] ."</td>";
                                     echo "<td>". $row['telephone'] ."</td>";
+                                    echo "<td>". $row['email_enseignant'] ."</td>";
+                                    echo "<td>". $row['password'] ."</td>";
                                     echo "<td>". $row['statut_enseignant'] ."</td>";
                                     echo "<td><a href=\"edit_enseignant.php?id_enseignant=".$row['id_enseignant']."\" style=\"margin-right:10px; color:green;\"><i class=\"fa fa-pencil m-r-5\"></i></a>
                                      <a href=\"delete_enseignant.php?id_enseignant=" . $row['id_enseignant'] . "\" style=\"margin-right:10px; color:red;\" onClick=\"return confirm

@@ -4,7 +4,7 @@ include_once("config.php");
 // Vérifier si l'ID de l'enseignant est spécifié dans la requête GET
 if (isset($_GET['id_enseignant'])) {
     $id_enseignant = $_GET['id_enseignant'];
-    
+
     // Vérifier si le formulaire est soumis
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $nom_enseignant = $_POST["nom_enseignant"];
@@ -53,6 +53,7 @@ if (isset($_GET['id_enseignant'])) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
@@ -63,11 +64,12 @@ if (isset($_GET['id_enseignant'])) {
     <link rel="stylesheet" type="text/css" href="assets/css/select2.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
+
 <body>
     <div class="main-wrapper">
-    <div class="header">
+        <div class="header">
             <div class="header-left">
-                    <a href="index-2.php" class="logo">
+                <a href="index-2.php" class="logo">
                     <img src="assets/img/mundiap.png" width="40" height="40">
                 </a>
             </div>
@@ -192,45 +194,46 @@ if (isset($_GET['id_enseignant'])) {
                                         <input class="form-control" type="text" name="statut_enseignant" value="<?php echo $statut_enseignant; ?>">
                                     </div>
                                 </div>
-                            </div>
-                                <div class="col-sm-6">
+                            
+                            <div class="col-sm-6">
                                 <div class="form-group">
-                                 <label>Mot de passe de l'enseignant</label>
+                                    <label>Mot de passe de l'enseignant</label>
                                     <div class="input-group">
-                                  <input class="form-control" type="password" name="password" id="password-input" value="<?php echo isset($password) ? $password : ''; ?>">
-                                       <span class="input-group-btn">
-                                    <button type="button" id="toggle-password" class="btn btn-outline-secondary" onclick="togglePasswordVisibility()"><i class="fa fa-eye"></i></button>
-                                         </span>
-                                         </div>
-                                           </div>
+                                        <input class="form-control" type="password" name="password" id="password-input" value="<?php echo isset($password) ? $password : ''; ?>">
+                                        <span class="input-group-btn">
+                                            <button type="button" id="toggle-password" class="btn btn-outline-secondary" onclick="togglePasswordVisibility()"><i class="fa fa-eye"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            <script>
+                                var passwordInput = document.getElementById("password-input");
+                                var toggleButton = document.getElementById("toggle-password");
 
-                                               <script>
-                                   var passwordInput = document.getElementById("password-input");
-                                  var toggleButton = document.getElementById("toggle-password");
+                                // Afficher la valeur saisie si elle existe
+                                var passwordValue = passwordInput.value;
+                                if (passwordValue !== "") {
+                                    passwordInput.type = "text";
+                                    toggleButton.innerHTML = '<i class="fa fa-eye-slash"></i>';
+                                }
 
-                                   // Afficher la valeur saisie si elle existe
-                                  var passwordValue = passwordInput.value;
-                                   if (passwordValue !== "") {
-                                   passwordInput.type = "text";
-                                     toggleButton.innerHTML = '<i class="fa fa-eye-slash"></i>';
-                                      }
-
-    function togglePasswordVisibility() {
-        if (passwordInput.type === "password") {
-            passwordInput.type = "text";
-            toggleButton.innerHTML = '<i class="fa fa-eye-slash"></i>';
-        } else {
-            passwordInput.type = "password";
-            toggleButton.innerHTML = '<i class="fa fa-eye"></i>';
-        }
-    }
-</script>
+                                function togglePasswordVisibility() {
+                                    if (passwordInput.type === "password") {
+                                        passwordInput.type = "text";
+                                        toggleButton.innerHTML = '<i class="fa fa-eye-slash"></i>';
+                                    } else {
+                                        passwordInput.type = "password";
+                                        toggleButton.innerHTML = '<i class="fa fa-eye"></i>';
+                                    }
+                                }
+                            </script>
 
 
-                                 <div class="m-t-20 text-center">
+                            <div class="m-t-20 text-center">
                                 <button class="btn btn-primary submit-btn" type="submit"><i class="fa fa-pencil" aria-hidden="true"></i> Modifier Enseignant</button>
                             </div>
-                                
+
                         </form>
                     </div>
                 </div>
@@ -247,4 +250,5 @@ if (isset($_GET['id_enseignant'])) {
     <script src="assets/js/moment.min.js"></script>
     <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
 </body>
+
 </html>
