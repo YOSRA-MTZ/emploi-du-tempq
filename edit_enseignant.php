@@ -130,7 +130,7 @@ if (isset($_GET['id_enseignant'])) {
                             <a href="emploi.php"><i class="fa fa-calendar-o"></i> <span>Emploi du temps</span></a>
 
                         </li>
-                        <li class="active">
+                        <li >
                             <a href="disponibilite.php"><i class="fa fa-list"></i> <span>Disponibilité enseignant</span></a>
 
                         <li>
@@ -141,12 +141,22 @@ if (isset($_GET['id_enseignant'])) {
                         <li>
                             <a href="calendar.php"><i class="fa fa-calendar"></i> <span>Calendrier</span></a>
                         </li>
+                        <li>
+                        <a href="disposalle.php"><i class="fa fa-home"></i> <span>Disponibilite salle</span></a>
+                        </li>
                         <li class="submenu">
                             <a href="#"><i class="fa fa-cog"></i> <span> Paramétrage </span> <span class="menu-arrow"></span></a>
                             <ul style="display: none;">
-                                <li><a href="enseignant.php"><i class="fa fa-user"></i>Enseignant</a></li>
+                                <li class="active"><a href="enseignant.php">Enseignant</a></li>
+                                  <li ><a href="etudiant.php">Etudiant</a></li>
+                                  <li><a href="filiere.php"> Filière</a></li>
+                                  <li><a href="salle.php"> Salle</a></li>
 
-                            </ul>
+                                  <li ><a href="classe.php"> Classe</a></li>
+                                
+                                 
+
+                                </ul>
                         </li>
                     </ul>
                 </div>

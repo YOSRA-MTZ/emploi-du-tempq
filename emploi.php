@@ -103,13 +103,22 @@
                       <li>
                           <a href="calendar.php"><i class="fa fa-calendar"></i> <span>Calendrier</span></a>
                       </li>
-                      <li class="submenu">
-                        <a href="#"><i class="fa fa-cog"></i> <span> Paramétrage </span> <span class="menu-arrow"></span></a>
-                        <ul style="display: none;">
-                            <li class="active"><a href="enseignant.php"><i class="fa fa-user"></i>Enseignant</a></li>
-                            
-                        </ul>
-                    </li>
+                      <li>
+                      <a href="disposalle.php"><i class="fa fa-home"></i> <span>Disponibilite salle</span></a>
+                        </li>
+                        <li class="submenu">
+                            <a href="#"><i class="fa fa-cog"></i> <span> Paramétrage </span> <span class="menu-arrow"></span></a>
+                            <ul style="display: none;">
+                                <li ><a href="enseignant.php">Enseignant</a></li>
+                                  <li ><a href="etudiant.php">Etudiant</a></li>
+                                  <li><a href="filiere.php"> Filière</a></li>
+                                  <li><a href="salle.php"> Salle</a></li>
+
+                                  <li ><a href="classe.php"> Classe</a></li>
+                                 
+
+                                </ul>
+                        </li>
                    </ul> 
               </div>
             </div>
