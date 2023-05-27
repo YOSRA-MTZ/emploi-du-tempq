@@ -129,7 +129,7 @@
                     <div class="row filter-row">
                     <div class="col-sm-12 col-md-6">
                         <div class="form-group form-focus">
-                            <input type="text" placeholder="Chercher enseignant ...." class="form-control floating" name="chercher_valeur">
+                            <input type="text" placeholder="Chercher salle ...." class="form-control floating" name="chercher_valeur">
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3">
