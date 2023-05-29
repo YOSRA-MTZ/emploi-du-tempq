@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'config.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -124,7 +125,7 @@ session_start();
             <div class="content">
                 <div class="row">
                     <div class="col-sm-4 col-3">
-                        <h1 >liste des demandes</h1>
+                        <h1 >Liste des demandes</h1>
                     </div>
                    
                 </div>
@@ -134,24 +135,62 @@ session_start();
 							<table class="table table-border table-striped custom-table datatable mb-0">
 								<thead>
 									<tr>
-                                        <th>NR</th>
-										<th>Enseignant </th>
-										<th>Demande</th>
-										<th >Action</th>
+                                        <th class="text-center">NR</th>
+										<th class="text-center">Enseignant </th>
+                                        <th class="text-center">Date du cours</th>
+                                        <th class="text-center">Heure du cours</th>
+                                        <th class="text-center">Module</th>
+                                        <th class="text-center">Date du reportement</th>
+                                        <th class="text-center">Heure du reportement</th>
+										<th class="text-center">Commentaire</th>
+										<th class="text-center">Etat</th>
+                                       
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
-                                        <td>1</td>
-										<td><img width="28" height="28" src="assets/img/user.jpg" class="rounded-circle m-r-5" alt="">Dr.saki</td>
-										
-										<td>demande de report du seance 21/3/2023 </td>
-										
-										<td >
-											
-                                            <a href="emploi.php" style="color:green; font-size:15px;"><i class="fa fa-check-circle-o"></i> Valider</a>	
-											</div>
-										</td>
+
+                                    
+                                    <?php
+
+                                    // Requête SQL pour récupérer les données de la table "demande" avec les jointures appropriées
+       
+
+
+                                    $sql = "SELECT demande.id_demande, demande.contenu, demande.statut_demande, enseignant.nom_enseignant, demande.id_admin, demande.Date_Coursa, demande.Heure_Coursa, demande.Module, demande.Date_Report, demande.Heure_Report
+        FROM demande
+        INNER JOIN enseignant ON demande.id_enseignant = enseignant.id_enseignant";
+        $conn = new mysqli($databaseHost, $databaseUsername, $databasePassword, $databaseName);
+        $result = $conn->query($sql);
+                            
+$conn = new mysqli($databaseHost, $databaseUsername, $databasePassword, $databaseName);
+$result = $conn->query($sql);
+
+
+        if ($result->num_rows > 0) {
+            // Afficher les données de chaque ligne
+            while ($row = $result->fetch_assoc()) {
+                $heureCoursa = substr($row["Heure_Coursa"], 0, 5);
+                $heureReport = substr($row["Heure_Report"], 0, 5);
+                echo "<tr>";
+                echo "<td class=\"text-center\">" . $row["id_demande"] . "</td>";
+                echo "<td class=\"text-center\">" . $row["nom_enseignant"] . "</td>";
+                 "<td>" . $row["id_admin"] . "</td>";
+                echo "<td class=\"text-center\">" . $row["Date_Coursa"] . "</td>";
+                echo "<td class=\"text-center\">" . $heureCoursa. "</td>";
+                echo "<td class=\"text-center\">" . $row["Module"] . "</td>";
+                echo "<td class=\"text-center\">" . $row["Date_Report"] . "</td>";
+                echo "<td class=\"text-center\">" . $heureReport . "</td>";
+                echo "<td class=\"text-center\">" . $row["contenu"] . "</td>";
+                echo "<td class=\"text-center\">" . $row["statut_demande"] . "</td>";
+                echo "</tr>";
+            }
+        } else {
+            echo "<tr><td colspan='10'>Aucune demande trouvée.</td></tr>";
+        }
+        ?>
+
+
 									</tr>
 									
 								</tbody>
@@ -179,4 +218,4 @@ session_start();
 
 
 
-</html>
+</php>

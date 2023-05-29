@@ -105,18 +105,53 @@ session_start();
                                         <div class="account-logo">
                                             <h4 >Demande de report ou avancement</h4>
                                         </div>
+
+                                        <form id="demandeForm" action="envoyerDemande.php" method="POST" >
+        
+
                                         <div class="form-group">
-                                            <label> Date</label>
-                                            <input type="date" autofocus="" class="form-control">
+                                            <label> Date Cours</label>
+                                            <input type="date" name="Date_Coursa" id="Date_Coursa" value="" class="form-control">
                                         </div>
+
+
                                         <div class="form-group">
-                                            <label>Time</label>
-                                            <input type="time" class="form-control">
+                                            <label>Time du cours</label>
+                                            <input type="time" name="Heure_Coursa" id="Heure_Coursa" value="" class="form-control">
+                                        </div>
+                                    
+                                        <div class="col-sm-14">
+                                            <div class="form-group">
+                                                <label>Module</label>
+                                                <select onChange="getmodule(this.value);" class="select" name="Module" id="Module" class="form-control" required>
+                                                <option value="">Module</option>
+                                                <option>Mecanique</option>
+                                                <option>Thermodinamique</option>
+                                                <option>Electrostatique</option>                                                    
+                                                </select>
+                                            </div>
+
+                                        <div class="form-group">
+                                            <label> Date du reportement</label>
+                                            <input type="date" name="Date_Report" id="Date_Report" value="" class="form-control">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Time du reportement</label>
+                                            <input type="time" name="Heure_Report" id="Heure_Report" value="" class="form-control">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Demande</label>
+                                            <textarea class="form-control" rows="5" id="contenu" name="contenu" placeholder="Commentaire"></textarea>
                                         </div>
                                         
                                         <div class="form-group text-center">
-                                            <button type="submit" class="btn btn-primary "> <i class="fa fa-check" aria-hidden="true"></i>Confirmer</button>
-                                        </div>
+                                            <button type="submit" class="btn btn-primary" >
+                                                  <i class="fa fa-check" aria-hidden="true"></i> Confirmer
+                                                         </button>
+</div>
+
                                         
                                     </form>
                                 </div>
@@ -132,6 +167,21 @@ session_start();
 		</div>
         
     </div>
+
+    <script>
+        function submitForm() {
+            // Get the form element
+            var form = document.getElementById("demandeForm");
+            // Perform any additional validation or data manipulation if needed
+            // Submit the form
+            form.submit();
+            // Redirect to the homepage
+            window.location.href = "enseignant.php";
+        }
+
+
+
+    </script>
     <div class="sidebar-overlay" data-reff=""></div>
     <script src="assets/js/jquery-3.2.1.min.js"></script>
 	<script src="assets/js/popper.min.js"></script>
@@ -147,4 +197,3 @@ session_start();
 
 
 <!-- patients23:19-->
-</php>
