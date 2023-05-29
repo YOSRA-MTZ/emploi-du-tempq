@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mar. 16 mai 2023 à 14:21
+-- Généré le : dim. 28 mai 2023 à 17:50
 -- Version du serveur : 10.4.25-MariaDB
 -- Version de PHP : 8.1.10
 
@@ -124,7 +124,7 @@ CREATE TABLE `disponibilite` (
 --
 
 INSERT INTO `disponibilite` (`id_dispo`, `lundi`, `mardi`, `mercredi`, `jeudi`, `vendredi`, `samedi`, `id_enseignant`) VALUES
-(8, '1', '', '', '', '', '', 1);
+(18, '', '', '', '', '3', '', 5);
 
 -- --------------------------------------------------------
 
@@ -161,8 +161,8 @@ CREATE TABLE `enseignant` (
 --
 
 INSERT INTO `enseignant` (`id_enseignant`, `nom_enseignant`, `email_enseignant`, `adresse`, `telephone`, `statut_enseignant`, `password`) VALUES
-(1, 'moumtaz', 'y.moumtaz@gmail.com', 'hhhhhhhhhhhh', '0689674533', 'vacataire', 'aaa'),
-(2, 'yosra', 'y.moumtaz@gmail.com', 'hhhhhhhhhhhh', '0689674533', 'vacataire', 'aaa');
+(2, 'yosra', 'y.moumtaz@gmail.com', 'hhhhhhhhhhhh', '0689674533', 'vacataire', 'aaa'),
+(5, 'salam', 'a@gmail.com', 'ZFFEGEG', '0988796', 'vacataire', 'aa');
 
 -- --------------------------------------------------------
 
@@ -201,7 +201,6 @@ CREATE TABLE `etudiant` (
   `adresse` varchar(50) NOT NULL,
   `naissance` varchar(50) NOT NULL,
   `telephone` varchar(50) NOT NULL,
-  `id_planning` int(11) NOT NULL,
   `id_group` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -390,7 +389,6 @@ ALTER TABLE `est_plannifier`
 --
 ALTER TABLE `etudiant`
   ADD PRIMARY KEY (`id_etudiant`),
-  ADD KEY `etudiant__planning_FK` (`id_planning`),
   ADD KEY `etudiant__groupe0_FK` (`id_group`);
 
 --
@@ -464,7 +462,7 @@ ALTER TABLE `demande`
 -- AUTO_INCREMENT pour la table `disponibilite`
 --
 ALTER TABLE `disponibilite`
-  MODIFY `id_dispo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_dispo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT pour la table `element_module`
@@ -476,7 +474,7 @@ ALTER TABLE `element_module`
 -- AUTO_INCREMENT pour la table `enseignant`
 --
 ALTER TABLE `enseignant`
-  MODIFY `id_enseignant` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_enseignant` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `etudiant`
@@ -568,7 +566,7 @@ ALTER TABLE `demande`
 -- Contraintes pour la table `disponibilite`
 --
 ALTER TABLE `disponibilite`
-  ADD CONSTRAINT `disponiblite_enseignant_FK` FOREIGN KEY (`id_enseignant`) REFERENCES `enseignant` (`id_enseignant`);
+  ADD CONSTRAINT `disponiblite_enseignant_FK` FOREIGN KEY (`id_enseignant`) REFERENCES `enseignant` (`id_enseignant`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `element_module`

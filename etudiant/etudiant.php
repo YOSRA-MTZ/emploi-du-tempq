@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -67,7 +70,7 @@
 							<img class="rounded-circle" src="assets/img/user.jpg" width="24" alt="Admin">
 							<span class="status online"></span>
 						</span>
-						<span>Etudiant</span>
+                        <span><?php echo $_SESSION['etudiant']; ?></span>
                     </a>
 					<div class="dropdown-menu">
 						<a class="dropdown-item" href="profile.php">My Profile</a>
@@ -101,7 +104,7 @@
             </div>
         </div>
         <div class="page-wrapper">
-            <h1 class="text-center mb-4" style="font-family: 'Montserrat', sans-serif; font-size: 3rem; color: #007bff; text-shadow: 2px 2px #ccc;"> Bienvenue </h1>
+            <h1 class="text-center mb-4" style="font-family: 'Montserrat', sans-serif; font-size: 3rem; color: #007bff; text-shadow: 2px 2px #ccc;"> Bienvenue,<?php echo $_SESSION['etudiant']; ?></h1>
             <img src="assets/img/Accueil.jpg" class="img-fluid mx-auto d-block" width="65%" height="500px">
         </div>
         

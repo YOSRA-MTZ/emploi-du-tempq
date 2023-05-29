@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,10 +50,11 @@
                 <li class="nav-item dropdown has-arrow">
                     <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
                         <span class="user-img">
-							<img class="rounded-circle" src="assets/img/user.jpg" width="24" alt="Admin">
+							<img class="rounded-circle" src="assets/img/user.jpg" width="24">
 							<span class="status online"></span>
+                            
 						</span>
-						<span>Admin</span>
+                        <span><?php echo $_SESSION['admin']; ?></span>
                     </a>
 					<div class="dropdown-menu">
 						<a class="dropdown-item" href="profile.php">My Profile</a>
@@ -118,7 +122,7 @@
             </div>
         </div>
         <div class="page-wrapper">
-            <h1  >Bonjour, administrateur</h1>
+        <h1>Bienvenue,<?php echo $_SESSION['admin']; ?></h1>
             <img src="assets/img/mundia.png" style="text-align:center;margin:auto;display:flex ;margin-top:5%;width: 70% ">
         </div>
     </div>

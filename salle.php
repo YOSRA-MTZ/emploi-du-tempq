@@ -1,13 +1,16 @@
-<!DOCTYPE html>
+
+<?php
+session_start();
+?><!DOCTYPE html>
 <html lang="en">
 
 
-<!-- attendance23:24-->
+
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/mundiap.png">
     <title>Mundiapolis</title>
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
@@ -46,7 +49,7 @@
                     <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
                         <span class="user-img"><img class="rounded-circle" src="assets/img/user.jpg" width="40" alt="Admin">
                             <span class="status online"></span></span>
-                        <span>Admin</span>
+                            <span><?php echo $_SESSION['admin']; ?></span>
                     </a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="profile.php">My Profile</a>
