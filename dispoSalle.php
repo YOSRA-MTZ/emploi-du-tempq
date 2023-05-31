@@ -147,13 +147,9 @@ session_start();
                                 <thead>
                                     <tr>
                                         <th>Salle</th>
-                                        <th>Lundi</th>
-                                        <th>Mardi</th>
-                                        <th>Mercredi</th>
-                                        <th>Jeudi</th>
-                                        <th>Vendredi</th>
-                                        <th>Samedi</th>
-                                        <th>Action</th>
+                                        <th>Semaine</th>
+                                        <th>Date</th>
+                                        <th>Actions</th>
 
                                     </tr>
 
@@ -165,10 +161,8 @@ session_start();
                                       <td>yosra</td>
                                         <td>AM</td>
                                         <td>pM</td>
-                                        <td>AM/PM</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
+                                        
+                                        
                                         <td class="text-right">
                                             <div class="dropdown dropdown-action">
                                                 <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>

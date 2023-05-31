@@ -125,85 +125,34 @@ session_start();
                     <div class="col-lg-8 offset-lg-2 m-t-30">
                     <form action="insertDispo.php" method="post" class="php">
                             <div class="row">
-                                <div class="col-sm-6 ">
+                            <div class="col-sm-6 ">
                                     <div class="form-group">
                                         <label>Salle</label>
-                                        <select class="select" name="enseignant" id="enseignant" >
+                                        <select class="select" name="enseignant" id="enseignant">
 
                                             <option value="">Selectioner Salle</option>
-                                           
+
 
                                         </select>
                                         <div class="validate"></div>
                                     </div>
                                 </div>
-
-
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label>Lundi</label>
-                                        <select class="select" name="lundi" id="lundi">
-                                            <option value="">-</option>
-                                            
-
-                                        </select>
+                                        <label>Semaine</label>
+                                        <input class="form-control" type="Text" name="capacite">
                                     </div>
                                 </div>
-
-                                <div class="col-sm-6">
+                                <div class="col-sm-12">
                                     <div class="form-group">
-                                        <label>Mardi</label>
-                                        <select class="select"name="mardi" id="mardi">
-                                            <option value="">-</option>
-                                           
-                                        </select>
+                                        <label>Date</label>
+                                        <input class="form-control" type="date" name="capacite">
                                     </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Mercredi</label>
-                                        <select class="select"name="mercredi" id="mercredi">
-                                            <option value="">-</option>
-                                            
-
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Jeudi</label>
-                                        <select class="select"name="jeudi" id="jeudi">
-                                            
-
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Vendredi</label>
-                                        <select class="select"name="vendredi" id="vendredi">
-                                            
-
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Samedi</label>
-                                        <select class="select"name="samedi" id="samedi">
-                                           
-
-                                        </select>
-                                    </div>
-                                </div>
+                                </div> 
 
                                 <div class="m-t-20  text-center">
-                                    <button class="btn btn-primary submit-btn" ><i class="fa fa-plus" aria-hidden="true"></i> Modifier Disponibilité</button>
-                                </div>
+                                <button class="btn btn-primary submit-btn"><i class="fa fa-pencil" aria-hidden="true"></i> Modifier Disponibilité</button>
+                            </div>
                         </form>
                     </div>
                 </div>

@@ -131,12 +131,12 @@ session_start();
                 <div class="col-sm-6 col-md-6">
                         <div class="form-group form-focus">
                             <label class="focus-label">Salle</label>
-                            <input type="text" class="form-control floating">
+                            <input type="text" class="form-control floating" name="chercher_valeur">
                         </div>
                     </div>
                    
                     <div class="col-sm-6 col-md-3">
-                        <a href="#" class="btn btn-success btn-block"> Search </a>
+                        <a href="#" class="btn btn-success btn-block" > Search </a>
                     </div>
                 </div>
                 <div class="row">
@@ -156,24 +156,26 @@ session_start();
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                      <td>yosra</td>
-                                        <td>50</td>
-                                        <td>1</td>
-                                        <td>ROUDANI</td>
-                                      
-                                      
-                                        <td class="text-right">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item" href="edit_salle.php"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                                    <a class="dropdown-item" href="deleteSalle.php" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                <?php
+                                include("config.php");
+
+                                // Exécuter une requête de sélection
+                                $requeteSelect = "SELECT * FROM salle";
+                                $result = $mysqli->query($requeteSelect);
+                                while ($row = mysqli_fetch_array($result)) {
+                                    echo "<tr>";
+                                    echo "<td>". $row['num_salle'] ."</td>";
+                                    echo "<td>". $row['capacite'] ."</td>";
+                                    echo "<td>". $row['etage_salle'] ."</td>";
+                                    echo "<td>". $row['campus'] ."</td>";
                                     
+                                    echo "<td><a href=\"edit_salle.php?id_salle=".$row['id_salle']."\" style=\"margin-right:10px; color:green;\"><i class=\"fa fa-pencil m-r-5\"></i></a>
+                                     <a href=\"deleteSalle.php?id_salle=" . $row['id_salle'] . "\" style=\"margin-right:10px; color:red;\" onClick=\"return confirm
+                                     ('Êtes-vous sûr de vouloir supprimer cette salle ?');\"><i class=\"fa fa-trash-o m-r-5\"></i></a></td>";
+                                    echo "</tr>";
+                                } ?>
+                                      
+                                      
 									
 									
 									
@@ -192,7 +194,27 @@ session_start();
     <script src="assets/js/app.js"></script>
 	<script src="assets/js/moment.min.js"></script>
 	<script src="assets/js/bootstrap-datetimepicker.min.js"></script>
-	
+	<script>
+    $(document).ready(function() {
+        // Événement de clic sur le bouton de recherche
+        $('a.btn-success').click(function() {
+            // Récupérer la valeur de recherche
+            var searchValue = $('input[name="chercher_valeur"]').val().toLowerCase();
+
+            // Parcourir toutes les lignes du tableau
+            $('table tbody tr').each(function() {
+                var rowText = $(this).text().toLowerCase();
+
+                // Afficher ou masquer les lignes en fonction de la correspondance avec la valeur de recherche
+                if (rowText.indexOf(searchValue) !== -1) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+    });
+</script>
 </body>
 
 

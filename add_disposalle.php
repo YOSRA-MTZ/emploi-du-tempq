@@ -10,7 +10,8 @@ session_start();
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/mundiap.png">    <title>Mundiapolis</title>
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/mundiap.png">
+    <title>Mundiapolis</title>
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/select2.min.css">
@@ -23,7 +24,7 @@ session_start();
         <div class="header">
             <div class="header-left">
                 <a href="index-2.php" class="logo">
-                <img src="assets/img/mundiap.png" width="40" height="40" >                 </a>
+                    <img src="assets/img/mundiap.png" width="40" height="40"> </a>
             </div>
             <a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
             <a id="mobile_btn" class="mobile_btn float-left" href="#sidebar"><i class="fa fa-bars"></i></a>
@@ -47,7 +48,7 @@ session_start();
                     <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
                         <span class="user-img"><img class="rounded-circle" src="assets/img/user.jpg" width="40" alt="Admin">
                             <span class="status online"></span></span>
-                            <span><?php echo $_SESSION['admin']; ?></span>
+                        <span><?php echo $_SESSION['admin']; ?></span>
                     </a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="profile.php">My Profile</a>
@@ -82,8 +83,8 @@ session_start();
                             <a href="emploi.php"><i class="fa fa-calendar-o"></i> <span>Emploi du temps</span></a>
 
                         </li>
-                        <li >
-                        <a href="disponibilite.php"><i class="fa fa-list"></i> <span>Disponibilité enseignant</span></a>
+                        <li>
+                            <a href="disponibilite.php"><i class="fa fa-list"></i> <span>Disponibilité enseignant</span></a>
 
                         <li>
                         <li>
@@ -94,19 +95,19 @@ session_start();
                             <a href="calendar.php"><i class="fa fa-calendar"></i> <span>Calendrier</span></a>
                         </li>
                         <li class="active">
-                        <a href="disposalle.php"><i class="fa fa-home"></i> <span>Disponibilite salle</span></a>
+                            <a href="disposalle.php"><i class="fa fa-home"></i> <span>Disponibilite salle</span></a>
                         </li>
                         <li class="submenu">
                             <a href="#"><i class="fa fa-cog"></i> <span> Paramétrage </span> <span class="menu-arrow"></span></a>
                             <ul style="display: none;">
-                                <li ><a href="enseignant.php">Enseignant</a></li>
-                                  <li ><a href="etudiant.php">Etudiant</a></li>
-                                  <li><a href="filiere.php"> Filière</a></li>
-                                  <li><a href="salle.php"> Salle</a></li>
+                                <li><a href="enseignant.php">Enseignant</a></li>
+                                <li><a href="etudiant.php">Etudiant</a></li>
+                                <li><a href="filiere.php"> Filière</a></li>
+                                <li><a href="salle.php"> Salle</a></li>
 
-                                  <li ><a href="classe.php"> Classe</a></li>
-                                 
-                                </ul>
+                                <li><a href="classe.php"> Classe</a></li>
+
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -121,87 +122,43 @@ session_start();
                 </div>
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2 m-t-30">
-                    <form action="insertDispo.php" method="post" class="php">
+                        <form action="insertDispo.php" method="post" class="php">
                             <div class="row">
                                 <div class="col-sm-6 ">
                                     <div class="form-group">
                                         <label>Salle</label>
-                                        <select class="select" name="enseignant" id="enseignant" >
+                                        <select class="select" name="enseignant" id="enseignant">
 
                                             <option value="">Selectioner Salle</option>
-                                           
+
 
                                         </select>
                                         <div class="validate"></div>
                                     </div>
                                 </div>
-
-
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label>Lundi</label>
-                                        <select class="select" name="lundi" id="lundi">
-                                            <option value="">-</option>
-                                            
-
-                                        </select>
+                                        <label>Semaine</label>
+                                        <input class="form-control" type="Text" name="capacite">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label>Date</label>
+                                        <input class="form-control" type="date" name="capacite">
                                     </div>
                                 </div>
 
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Mardi</label>
-                                        <select class="select"name="mardi" id="mardi">
-                                            <option value="">-</option>
-                                           
-                                        </select>
-                                    </div>
-                                </div>
 
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Mercredi</label>
-                                        <select class="select"name="mercredi" id="mercredi">
-                                            <option value="">-</option>
-                                            
 
-                                        </select>
-                                    </div>
-                                </div>
 
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Jeudi</label>
-                                        <select class="select"name="jeudi" id="jeudi">
-                                            
 
-                                        </select>
-                                    </div>
-                                </div>
 
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Vendredi</label>
-                                        <select class="select"name="vendredi" id="vendredi">
-                                            
+                            </div>
 
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Samedi</label>
-                                        <select class="select"name="samedi" id="samedi">
-                                           
-
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="m-t-20  text-center">
-                                    <button class="btn btn-primary submit-btn" ><i class="fa fa-plus" aria-hidden="true"></i> Ajouter Disponibilité</button>
-                                </div>
+                            <div class="m-t-20  text-center">
+                                <button class="btn btn-primary submit-btn"><i class="fa fa-plus" aria-hidden="true"></i> Ajouter Disponibilité</button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -220,4 +177,5 @@ session_start();
 
 
 <!-- add-enseignant24:07-->
- </html>
+
+</html>

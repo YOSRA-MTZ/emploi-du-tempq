@@ -124,18 +124,18 @@ session_start();
                 </div>
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2">
-                        <form>
+                    <form method="POST" action="insertSalle.php">
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Salle<span class="text-danger">*</span></label>
-                                        <input class="form-control" type="text">
+                                        <input class="form-control" type="text" name='num_salle'>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Capacité</label>
-                                        <input class="form-control" type="number">
+                                        <input class="form-control" type="number" name="capacite">
                                     </div>
                                 </div>
                                
@@ -143,14 +143,14 @@ session_start();
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Etage</label>
-                                        <input class="form-control" type="number">
+                                        <input class="form-control" type="number" name="etage_salle">
                                     </div>
                                 </div>
                                
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Campus</label>
-                                        <input class="form-control" type="text">
+                                        <input class="form-control" type="text" name="campus">
                                     </div>
                                 </div> 
                                 

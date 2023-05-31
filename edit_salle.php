@@ -1,5 +1,52 @@
 <?php
+include_once("config.php");
+
 session_start();
+
+// Vérifier si l'ID de l'enseignant est spécifié dans la requête GET
+if (isset($_GET['id_salle'])) {
+    $id_salle = $_GET['id_salle'];
+
+    // Vérifier si le formulaire est soumis
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $num_salle = $_POST["num_salle"];
+        $capacite = $_POST["capacite"];
+        $etage_salle = $_POST["etage_salle"];
+        $campus = $_POST["campus"];
+       
+
+        $query = "UPDATE enseignant SET num_salle='$num_salle',
+         capacite='$capacite', etage_salle='$etage_salle', 
+         campus='$campus'' WHERE id_salle='$id_salle'";
+
+        if (mysqli_query($mysqli, $query)) {
+            header("Location: salle.php?id_salle=$id_salle");
+            exit();
+        } else {
+            echo "Erreur lors de la mise à jour de la salle : " . mysqli_error($mysqli);
+        }
+    }
+
+    // Exécuter une requête de sélection
+    $result = mysqli_query($mysqli, "SELECT * FROM salle WHERE id_salle='$id_salle'");
+
+    // Vérifier s'il y a des résultats dans la requête
+    if ($res = mysqli_fetch_array($result)) {
+        $num_salle = $res["num_salle"];
+        $capacite = $res["capacite"];
+        $etage_salle = $res["etage_salle"];
+        $campus = $res["campus"];
+       
+    } else {
+        // Gérer le cas où l'ID de l'enseignant n'est pas trouvé dans la base de données
+        echo "ID de la salle non trouvé.";
+        exit;
+    }
+} else {
+    // Gérer le cas où l'ID de l'enseignant n'est pas spécifié dans la requête GET
+    echo "ID de la salle non spécifié.";
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -125,18 +172,19 @@ session_start();
                 </div>
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2">
-                        <form>
-                            <div class="row">
+                    <form action="modifierSalle.php?id_salle=<?php echo $id_salle; ?>" method="POST">
+
+                        <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Salle<span class="text-danger">*</span></label>
-                                        <input class="form-control" type="text">
+                                        <input class="form-control" type="text" name="num_salle" value="<?php echo $num_salle; ?>">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Capacité</label>
-                                        <input class="form-control" type="number">
+                                        <input class="form-control" type="number" name="capacite" value="<?php echo $capacite; ?>">
                                     </div>
                                 </div>
                                
@@ -144,17 +192,16 @@ session_start();
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Etage</label>
-                                        <input class="form-control" type="number">
+                                        <input class="form-control" type="number" name="etage_salle" value="<?php echo $etage_salle; ?>">
                                     </div>
                                 </div>
                                
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Campus</label>
-                                        <input class="form-control" type="text">
+                                        <input class="form-control" type="text" name="campus" value="<?php echo $campus; ?>">
                                     </div>
                                 </div> 
-                                
                                 
                                 
                             </div>
