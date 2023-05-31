@@ -20,7 +20,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($enseignant && ($password == $enseignant['password'])) {
         // Authentication successful
         // Redirect the admin to the desired page or perform any other action
-        $_SESSION['enseignant'] = $enseignant['nom_enseignant'];       
+        $_SESSION['enseignant'] = $enseignant['nom_enseignant'];
+        $_SESSION['email_enseignant'] = $enseignant['email_enseignant']; 
+        $_SESSION['adresse'] = $enseignant['adresse'];       
+        $_SESSION['telephone'] = $enseignant['telephone'];       
+        $_SESSION['statut_enseignant'] = $enseignant['statut_enseignant'];       
+
          header('Location: enseignant.php');
         exit;
     } else {
@@ -28,6 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = 'Invalid username/email or password';
     }
 }
+$email = isset($_SESSION['email_enseignant']) ? $_SESSION['email_enseignant'] : '';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,7 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100">
-                <form class="login100-form validate-form" method="POST" action="#">
+            <form class="login100-form validate-form" method="POST" >
+
                     <span class="login100-form-title p-b-43">
                         Bonjour Enseignant
                     </span>

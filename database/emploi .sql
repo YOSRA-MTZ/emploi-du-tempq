@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 31 mai 2023 à 12:24
+-- Généré le : mer. 31 mai 2023 à 22:17
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.1.12
 
@@ -108,7 +108,12 @@ INSERT INTO `concerner` (`id_seance`, `id_planning`) VALUES
 (81, 1),
 (83, 1),
 (84, 1),
-(85, 1);
+(85, 1),
+(86, 1),
+(88, 1),
+(93, 1),
+(95, 1),
+(97, 1);
 
 -- --------------------------------------------------------
 
@@ -130,7 +135,23 @@ CREATE TABLE `concerngroupe` (
 INSERT INTO `concerngroupe` (`id`, `id_seance`, `id_group`, `id_class`) VALUES
 (1, 83, 1, 2),
 (2, 84, 1, 1),
-(3, 85, 2, 1);
+(3, 85, 2, 1),
+(4, 86, 2, 1),
+(5, 86, 3, 2),
+(6, 88, 1, 1),
+(7, 88, 1, 1),
+(8, 88, 1, 1),
+(9, 88, 1, 1),
+(10, 88, 1, 1),
+(11, 93, 1, 1),
+(12, 93, 1, 1),
+(13, 95, 1, 1),
+(14, 95, 4, 2),
+(15, 97, 4, 2),
+(16, 97, 4, 2),
+(17, 97, 4, 2),
+(18, 97, 4, 2),
+(19, 97, 4, 2);
 
 -- --------------------------------------------------------
 
@@ -159,13 +180,13 @@ CREATE TABLE `demande` (
 
 CREATE TABLE `disponibilite` (
   `id_dispo` int(11) NOT NULL,
-  `lundi` int(11) DEFAULT NULL,
-  `mardi` int(11) DEFAULT NULL,
-  `mercredi` int(11) DEFAULT NULL,
-  `jeudi` int(11) DEFAULT NULL,
-  `vendredi` int(11) DEFAULT NULL,
-  `samedi` int(11) DEFAULT NULL,
-  `dimanche` int(11) DEFAULT NULL,
+  `MONDAY` int(11) DEFAULT NULL,
+  `TUESDAY` int(11) DEFAULT NULL,
+  `WEDNESDAY` int(11) DEFAULT NULL,
+  `THURSDAY` int(11) DEFAULT NULL,
+  `FRIDAY` int(11) DEFAULT NULL,
+  `SATURDAY` int(11) DEFAULT NULL,
+  `SUNDAY` int(11) DEFAULT NULL,
   `id_enseignant` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -173,8 +194,8 @@ CREATE TABLE `disponibilite` (
 -- Déchargement des données de la table `disponibilite`
 --
 
-INSERT INTO `disponibilite` (`id_dispo`, `lundi`, `mardi`, `mercredi`, `jeudi`, `vendredi`, `samedi`, `dimanche`, `id_enseignant`) VALUES
-(3, 1, 3, NULL, 2, 3, 3, NULL, 1);
+INSERT INTO `disponibilite` (`id_dispo`, `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, `SATURDAY`, `SUNDAY`, `id_enseignant`) VALUES
+(4, 1, 3, 2, 1, 2, 1, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -195,7 +216,8 @@ CREATE TABLE `disponibilite_salle` (
 
 INSERT INTO `disponibilite_salle` (`id_dispo_salle`, `date_dispo_salle`, `semaine_dispo_salle`, `id_salle_salle`) VALUES
 (1, '10:00-12:00|THURSDAY', 1, 1),
-(2, '10:00-12:00MONDAY', 1, 2);
+(2, '10:00-12:00|MONDAY', 1, 2),
+(3, '8:00-10:00|SATURDAY', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -286,7 +308,12 @@ INSERT INTO `est_plannifier` (`id_seance`, `id_element_module`) VALUES
 (81, 1),
 (83, 1),
 (84, 1),
-(85, 1);
+(85, 1),
+(86, 1),
+(88, 1),
+(93, 1),
+(95, 1),
+(97, 1);
 
 -- --------------------------------------------------------
 
@@ -445,17 +472,16 @@ CREATE TABLE `salle` (
   `num_salle` varchar(50) NOT NULL,
   `capacite` int(11) NOT NULL,
   `etage_salle` varchar(50) NOT NULL,
-  `campus` varchar(50) NOT NULL,
-  `dispo_salle` int(11) NOT NULL
+  `campus` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `salle`
 --
 
-INSERT INTO `salle` (`id_salle`, `num_salle`, `capacite`, `etage_salle`, `campus`, `dispo_salle`) VALUES
-(1, '101', 30, '1st Floor', 'Main Campus', 1),
-(2, '201', 50, '2nd Floor', 'Main Campus', 2);
+INSERT INTO `salle` (`id_salle`, `num_salle`, `capacite`, `etage_salle`, `campus`) VALUES
+(1, '101', 30, '1st Floor', 'Main Campus'),
+(2, '201', 50, '2nd Floor', 'Main Campus');
 
 -- --------------------------------------------------------
 
@@ -485,8 +511,13 @@ INSERT INTO `seance` (`id_seance`, `date_seance`, `debut_seance`, `fin_seance`, 
 (75, '2023-11-08', '10:00', '12:00', '10:00-12:00|WEDNESDAY', 'Rattrapage', 1, 1),
 (81, '2023-11-07', '8:00', '10:00', '8:00-10:00|TUESDAY', 'Normal', 1, 2),
 (83, '2023-11-06', '10:00', '12:00', '10:00-12:00|MONDAY', 'Normal', 1, 2),
-(84, '2023-11-06', '8:00', '10:00', '8:00-10:00|MONDAY', 'Rattrapage', 1, 1),
-(85, '2023-11-07', '8:00', '10:00', '8:00-10:00|TUESDAY', 'Rattrapage', 2, 1);
+(84, '2023-11-06', '8:00', '10:00', '8:00-10:00|MONDAY', 'Annuler', 1, 1),
+(85, '2023-11-07', '8:00', '10:00', '8:00-10:00|TUESDAY', 'Normal', 2, 1),
+(86, '2023-11-09', '10:00', '12:00', '10:00-12:00|THURSDAY', 'Normal', 2, 1),
+(88, '2023-11-09', '8:00', '10:00', '8:00-10:00|THURSDAY', 'Normal', 1, 1),
+(93, '2023-11-06', '14:00', '16:00', '14:00-16:00|MONDAY', 'Normal', 1, 1),
+(95, '2023-11-06', '10:00', '12:00', '10:00-12:00|MONDAY', 'Normal', 1, 1),
+(97, '2023-11-11', '8:00', '10:00', '8:00-10:00|SATURDAY', 'Normal', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -576,13 +607,13 @@ ALTER TABLE `demande`
 ALTER TABLE `disponibilite`
   ADD PRIMARY KEY (`id_dispo`),
   ADD KEY `disponiblite_enseignant_FK` (`id_enseignant`),
-  ADD KEY `lundi` (`lundi`),
-  ADD KEY `mardi` (`mardi`),
-  ADD KEY `mercredi` (`mercredi`),
-  ADD KEY `jeudi` (`jeudi`),
-  ADD KEY `vendredi` (`vendredi`),
-  ADD KEY `samedi` (`samedi`),
-  ADD KEY `dimanche` (`dimanche`);
+  ADD KEY `lundi` (`MONDAY`),
+  ADD KEY `mardi` (`TUESDAY`),
+  ADD KEY `mercredi` (`WEDNESDAY`),
+  ADD KEY `jeudi` (`THURSDAY`),
+  ADD KEY `vendredi` (`FRIDAY`),
+  ADD KEY `samedi` (`SATURDAY`),
+  ADD KEY `dimanche` (`SUNDAY`);
 
 --
 -- Index pour la table `disponibilite_salle`
@@ -675,6 +706,7 @@ ALTER TABLE `salle`
 
 --
 -- Index pour la table `seance`
+
 --
 ALTER TABLE `seance`
   ADD PRIMARY KEY (`id_seance`),
@@ -708,7 +740,7 @@ ALTER TABLE `class`
 -- AUTO_INCREMENT pour la table `concerngroupe`
 --
 ALTER TABLE `concerngroupe`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT pour la table `demande`
@@ -720,13 +752,13 @@ ALTER TABLE `demande`
 -- AUTO_INCREMENT pour la table `disponibilite`
 --
 ALTER TABLE `disponibilite`
-  MODIFY `id_dispo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_dispo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `disponibilite_salle`
 --
 ALTER TABLE `disponibilite_salle`
-  MODIFY `id_dispo_salle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_dispo_salle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `element_module`
@@ -786,7 +818,7 @@ ALTER TABLE `salle`
 -- AUTO_INCREMENT pour la table `seance`
 --
 ALTER TABLE `seance`
-  MODIFY `id_seance` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id_seance` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
 -- AUTO_INCREMENT pour la table `semaine`
@@ -837,13 +869,13 @@ ALTER TABLE `demande`
 -- Contraintes pour la table `disponibilite`
 --
 ALTER TABLE `disponibilite`
-  ADD CONSTRAINT `disponibilite_ibfk_1` FOREIGN KEY (`lundi`) REFERENCES `horaire` (`id_horaire`),
-  ADD CONSTRAINT `disponibilite_ibfk_2` FOREIGN KEY (`mardi`) REFERENCES `horaire` (`id_horaire`),
-  ADD CONSTRAINT `disponibilite_ibfk_3` FOREIGN KEY (`mercredi`) REFERENCES `horaire` (`id_horaire`),
-  ADD CONSTRAINT `disponibilite_ibfk_4` FOREIGN KEY (`jeudi`) REFERENCES `horaire` (`id_horaire`),
-  ADD CONSTRAINT `disponibilite_ibfk_5` FOREIGN KEY (`vendredi`) REFERENCES `horaire` (`id_horaire`),
-  ADD CONSTRAINT `disponibilite_ibfk_6` FOREIGN KEY (`samedi`) REFERENCES `horaire` (`id_horaire`),
-  ADD CONSTRAINT `disponibilite_ibfk_7` FOREIGN KEY (`dimanche`) REFERENCES `horaire` (`id_horaire`),
+  ADD CONSTRAINT `disponibilite_ibfk_1` FOREIGN KEY (`MONDAY`) REFERENCES `horaire` (`id_horaire`),
+  ADD CONSTRAINT `disponibilite_ibfk_2` FOREIGN KEY (`TUESDAY`) REFERENCES `horaire` (`id_horaire`),
+  ADD CONSTRAINT `disponibilite_ibfk_3` FOREIGN KEY (`WEDNESDAY`) REFERENCES `horaire` (`id_horaire`),
+  ADD CONSTRAINT `disponibilite_ibfk_4` FOREIGN KEY (`THURSDAY`) REFERENCES `horaire` (`id_horaire`),
+  ADD CONSTRAINT `disponibilite_ibfk_5` FOREIGN KEY (`FRIDAY`) REFERENCES `horaire` (`id_horaire`),
+  ADD CONSTRAINT `disponibilite_ibfk_6` FOREIGN KEY (`SATURDAY`) REFERENCES `horaire` (`id_horaire`),
+  ADD CONSTRAINT `disponibilite_ibfk_7` FOREIGN KEY (`SUNDAY`) REFERENCES `horaire` (`id_horaire`),
   ADD CONSTRAINT `disponiblite_enseignant_FK` FOREIGN KEY (`id_enseignant`) REFERENCES `enseignant` (`id_enseignant`);
 
 --
@@ -900,10 +932,7 @@ ALTER TABLE `planning`
   ADD CONSTRAINT `planning__admin_FK` FOREIGN KEY (`id_admin`) REFERENCES `admin` (`id_admin`);
 
 --
--- Contraintes pour la table `salle`
---
-ALTER TABLE `salle`
-  ADD CONSTRAINT `salle_ibfk_1` FOREIGN KEY (`id_salle`) REFERENCES `disponibilite_salle` (`id_dispo_salle`);
+
 
 --
 -- Contraintes pour la table `seance`

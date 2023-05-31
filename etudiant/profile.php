@@ -1,6 +1,30 @@
+
 <?php
-session_start();
-?>
+    session_start();
+    // Include the database configuration file
+    require_once 'config.php';
+    
+    // Check if the etudiant is logged in
+    if (!isset($_SESSION['email_etudiant'])) {
+        // Redirect to the login page or perform any other action
+        header('Location: login.php');
+        exit;
+    }
+    
+    // Get the etudiant's email from the session
+    $email = $_SESSION['email_etudiant'];
+    
+    // Fetch the etudiant's details from the database based on the email
+    $query = "SELECT * FROM etudiant WHERE email_etudiant = ?";
+    $stmt = $mysqli->prepare($query);
+    $stmt->bind_param('s', $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $etudiant = $result->fetch_assoc();
+    
+    // Display the etudiant's details
+    ?>
+
 <!DOCTYPE html>
 <html  lang="en">
 
@@ -114,34 +138,32 @@ session_start();
                                     <div class="row">
                                         <div class="col-md-5">
                                             <div class="profile-info-left">
-                                                <h3 class="user-name m-t-0 mb-0">SAMAR MOUCHAWRAB</h3>
-                                                <small class="text-muted">Vise presidente</small>
-                                                <div class="staff-id">Employee ID : DR-0001</div>
+                                          
+        
+                                                <h3 class="user-name m-t-0 mb-0"><?php echo $_SESSION['etudiant']; ?> <?php echo $_SESSION['prenom_etudiant']; ?> </h3>
+                                               
                                                 
                                             </div>
                                         </div>
                                         <div class="col-md-7">
                                             <ul class="personal-info">
                                                 <li>
-                                                    <span class="title">Phone:</span>
-                                                    <span class="text"><a href="#">770-889-6484</a></span>
+                                                    <span class="title">Téléphone :</span>
+                                                    <span class="text"><a href="#"><?php echo $_SESSION['telephone']; ?></a></span>
                                                 </li>
                                                 <li>
                                                     <span class="title">Email:</span>
-                                                    <span class="text"><a href="#">cristinagroves@example.com</a></span>
+                                                    <span class="text"><a href="#"><?php echo $_SESSION['email_etudiant']; ?></span>
                                                 </li>
                                                 <li>
-                                                    <span class="title">Birthday:</span>
-                                                    <span class="text">3rd March</span>
+                                                    <span class="title">Naissance:</span>
+                                                    <span class="text"><?php echo $_SESSION['naissance']; ?></span>
                                                 </li>
                                                 <li>
-                                                    <span class="title">Address:</span>
-                                                    <span class="text">714 Burwell Heights Road, Bridge City, TX, 77611</span>
+                                                    <span class="title">Adresse:</span>
+                                                    <span class="text"><?php echo $_SESSION['adresse']; ?></span>
                                                 </li>
-                                                <li>
-                                                    <span class="title">Gender:</span>
-                                                    <span class="text">Female</span>
-                                                </li>
+                                                
                                             </ul>
                                         </div>
                                     </div>
@@ -164,4 +186,4 @@ session_start();
 
 
 <!-- profile23:03-->
-</php>
+</html>

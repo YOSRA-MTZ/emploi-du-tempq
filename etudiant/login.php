@@ -10,18 +10,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
 
     // Fetch the admin credentials from the database
-    $query = "SELECT * FROM etudiant WHERE nom_etudiant = ? OR email_etudiant = ? LIMIT 1";
+    $query = "SELECT * FROM etudiant WHERE nom_etudiant = ? OR email_etudiant = ? OR adresse = ? OR naissance = ? OR telephone = ? LIMIT 1";
     $stmt = $mysqli->prepare($query);
-    $stmt->bind_param('ss', $email, $email);
+    $stmt->bind_param('sssss', $email, $email, $email, $email, $email);
     $stmt->execute();
     $result = $stmt->get_result();
     $etudiant = $result->fetch_assoc();
-    //$id_admin = "SELECT identifiant FROM admin WHERE identifiant = ? OR email_admin = ? LIMIT 1";
-    // Validate the credentials
+    
     if ($etudiant && ($password == $etudiant['mdp_etudiant'])) {
         // Authentication successful
         // Redirect the admin to the desired page or perform any other action
-        $_SESSION['etudiant'] = $etudiant['nom_etudiant'];       
+        $_SESSION['etudiant'] = $etudiant['nom_etudiant'];
+        $_SESSION['email_etudiant'] = $etudiant['email_etudiant']; 
+        $_SESSION['adresse'] = $etudiant['adresse']; 
+        $_SESSION['naissance'] = $etudiant['naissance'];      
+        $_SESSION['telephone'] = $etudiant['telephone'];       
+               
+
          header('Location: etudiant.php');
         exit;
     } else {
@@ -29,6 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = 'Invalid username/email or password';
     }
 }
+$email = isset($_SESSION['email_etudiant']) ? $_SESSION['email_etudiant'] : '';
+
 ?>
 
 <!DOCTYPE html>
@@ -49,23 +56,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100">
-                <form class="login100-form validate-form"  method="post" enctype="multipart/form-data" action="#">
-               
+                <form class="login100-form validate-form" method="post">
                     <span class="login100-form-title p-b-43">
                         Bonjour Etudiant
                     </span>
                     <?php if (isset($error)) { ?>
-                            <div class="alert alert-danger" role="alert" style="color:red"><?php echo $error; ?></div>
-                        <?php } ?>
+                        <div class="alert alert-danger" role="alert" style="color:red"><?php echo $error; ?></div>
+                    <?php } ?>
                     <div class="wrap-input100 validate-input">
                         <input class="input100" type="email" name="email" placeholder="Email" required>
                     </div>
 
-                    <div class="wrap-input100 validate-input" >
+                    <div class="wrap-input100 validate-input">
                         <input class="input100" type="password" name="password" placeholder="Password" required>
                     </div>
 
@@ -76,7 +81,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                 </form>
 
-
                 <div class="login100-more" style="background-image: url('assets/img/bg-012.png');">
                 </div>
             </div>
@@ -84,7 +88,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <script src="assets/js/main.js"></script>
-
 </body>
 
 </html>

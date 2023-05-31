@@ -1,6 +1,11 @@
 
 <?php
 session_start();
+ // Initialisez la variable pour éviter l'erreur "Undefined variable"
+
+
+    $emailAdmin = $_SESSION['email_admin'];
+   
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -142,34 +147,21 @@ session_start();
                                     <div class="row">
                                         <div class="col-md-5">
                                             <div class="profile-info-left">
-                                                <h3 class="user-name m-t-0 mb-0">Admin</h3>
+                                                <h3 class="user-name m-t-0 mb-0"><?php echo $_SESSION['admin']; ?></h3>
                                                 <small class="text-muted">Responsable</small>
-                                                <div class="staff-id">Employee ID : DR-0001</div>
+                                               
                                                 
                                             </div>
                                         </div>
                                         <div class="col-md-7">
                                             <ul class="personal-info">
-                                                <li>
-                                                    <span class="title">Phone:</span>
-                                                    <span class="text"><a href="#">0770-889-6484</a></span>
-                                                </li>
+                                               
                                                 <li>
                                                     <span class="title">Email:</span>
-                                                    <span class="text"><a href="#">admin@example.com</a></span>
+                                                    <span class="text"><a href="#"><?php  echo $emailAdmin; ?></a></span>
+
                                                 </li>
-                                                <li>
-                                                    <span class="title">Birthday:</span>
-                                                    <span class="text">3rd March</span>
-                                                </li>
-                                                <li>
-                                                    <span class="title">Address:</span>
-                                                    <span class="text">CASABLANCA</span>
-                                                </li>
-                                                <li>
-                                                    <span class="title">Gender:</span>
-                                                    <span class="text">Male</span>
-                                                </li>
+                                               
                                             </ul>
                                         </div>
                                     </div>

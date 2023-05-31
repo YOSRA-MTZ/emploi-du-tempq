@@ -1,5 +1,52 @@
 <?php
+include_once("config.php");
+
 session_start();
+if (isset($_GET['id_filiere'])) {
+    $id_filiere = $_GET['id_filiere'];
+
+    // Vérifier si le formulaire est soumis
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            
+        $chef_filiere = $_POST["chef_filiere"];
+        $nom_filiere = $_POST["nom_filiere"];
+        $nom_faculte = $_POST["nom_faculte"];
+        $nbr_annee = $_POST["nbr_annee"];
+
+        $query = "UPDATE filiere SET chef_filiere='$chef_filiere',
+        nom_filiere='$nom_filiere', nom_faculte='$nom_faculte', 
+        nbr_annee='$nbr_annee'
+         WHERE id_filiere='$id_filiere'";
+
+        if (mysqli_query($mysqli, $query)) {
+            header("Location: enseignant.php?id_filiere=$id_filiere");
+            exit();
+        } else {
+            echo "Erreur lors de la mise à jour du filiere : " . mysqli_error($mysqli);
+        }
+    }
+
+    // Exécuter une requête de sélection
+    $result = mysqli_query($mysqli, "SELECT * FROM filiere WHERE id_filiere='$id_filiere'");
+
+    // Vérifier s'il y a des résultats dans la requête
+    if ($res = mysqli_fetch_array($result)) {
+        $chef_filiere = $res["chef_filiere"];
+        $nom_filiere = $res["nom_filiere"];
+        $nom_faculte = $res["nom_faculte"];
+        $nbr_annee = $res["nbr_annee"];
+        
+    } else {
+       
+        echo "ID du filiere non trouvé.";
+        exit;
+    }
+} else {
+    
+    echo "ID du filiere non spécifié.";
+    exit;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -125,26 +172,26 @@ session_start();
                 </div>
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2">
-                        <form>
-                            <div class="row">
+                    <form action="modifier_filiere.php?id_filiere=<?php echo $id_filiere; ?>" method="POST">
+                        <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label>Nom du Filière <span class="text-danger">*</span></label>
-                                        <input class="form-control" type="text">
+                                        <label>Nom du Filière </label>
+                                        <input class="form-control" type="text"  name="nom_filiere" value="<?php echo $nom_filiere; ?>">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Nom du faculte</label>
-                                        <input class="form-control" type="text">
+                                        <input class="form-control" type="text" name="nom_faculte" value="<?php echo $nom_faculte; ?>">
                                     </div>
                                 </div>
                                
                                
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label>Nombre d'année <span class="text-danger">*</span></label>
-                                        <input class="form-control" type="number">
+                                        <label>Nombre d'année</label>
+                                        <input class="form-control" type="number" name="nbr_annee" value="<?php echo $nbr_annee; ?>">
                                     </div>
                                 </div>
                                
@@ -152,15 +199,14 @@ session_start();
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Chef du Filière</label>
-                                        <select class="select">
-                                            <option>-</option>
-                                            
-                                        </select>
+                                        <input class="form-control" name="chef_filiere" value="<?php echo $chef_filiere; ?>">
+                                        
                                     </div>
                                 </div>
                                 
                                 
                             </div>
+                            
                             
                             <div class="m-t-20 text-center">
                                 <button class="btn btn-primary submit-btn">Modifier</button>

@@ -2700,19 +2700,19 @@ a.fc-event:not([href]) {
 	color: #009efb;
 }
 .profile-view .profile-img-wrap {
-	height: 150px;
-	width: 150px;
+	height: 100px;
+	width: 100px;
 }
 .profile-view .profile-img {
-	width: 150px;
-	height: 150px;
+	width: 100px;
+	height: 100px;
 }
 .profile-view .profile-img .avatar {
 	font-size: 24px;
-	height: 150px;
-	line-height: 150px;
+	height: 100px;
+	line-height: 100px;
 	margin: 0;
-	width: 150px;
+	width: 100px;
 }
 .profile-view .profile-basic {
 	margin-left: 170px;

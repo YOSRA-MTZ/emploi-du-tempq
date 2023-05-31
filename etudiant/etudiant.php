@@ -46,10 +46,7 @@ session_start();
 											<span class="avatar">
 												<img alt="John Doe" src="assets/img/user.jpg" class="img-fluid">
 											</span>
-											<div class="media-body">
-												<p class="noti-details"><span class="noti-title">John Doe</span> added new task <span class="noti-title">Patient appointment booking</span></p>
-												<p class="noti-time"><span class="notification-time">4 mins ago</span></p>
-											</div>
+											
                                         </div>
                                     </a>
                                 </li>
@@ -79,7 +76,13 @@ session_start();
 					</div>
                 </li>
             </ul>
-           
+            <div class="dropdown mobile-user-menu float-right">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="profile.php">My Profile</a>
+                    <a class="dropdown-item" href="login.php">Logout</a>
+                </div>
+            </div>
         </div>
         <div class="sidebar" id="sidebar">
             <div class="sidebar-inner slimscroll">

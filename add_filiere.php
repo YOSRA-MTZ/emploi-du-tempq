@@ -1,7 +1,5 @@
-
-<?php
-session_start();
-?>
+<?php session_start();
+include 'config.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -123,37 +121,34 @@ session_start();
                 </div>
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2">
-                        <form>
+                        <form method="POST" action="insertFiliere.php">
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label>Nom du Filière <span class="text-danger">*</span></label>
-                                        <input class="form-control" type="text">
+                                        <label>Nom du Filière </label>
+                                        <input class="form-control" type="text"  name="nom_filiere">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Nom du faculte</label>
-                                        <input class="form-control" type="text">
+                                        <input class="form-control" type="text" name="nom_faculte">
                                     </div>
                                 </div>
                                
                                
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label>Nombre d'année <span class="text-danger">*</span></label>
-                                        <input class="form-control" type="number">
+                                        <label>Nombre d'année</label>
+                                        <input class="form-control" type="number" name="nbr_annee">
                                     </div>
                                 </div>
                                
                                 
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label>Chef du Filière</label>
-                                        <select class="select">
-                                            <option>-</option>
-                                            
-                                        </select>
+                                        <label>chef Filiere</label>
+                                        <input class="form-control" type="text" name="chef_filiere">
                                     </div>
                                 </div>
                                 

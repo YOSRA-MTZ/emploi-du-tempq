@@ -132,7 +132,7 @@ session_start();
                 <div class="col-sm-6 col-md-6">
                         <div class="form-group form-focus">
                             <label class="focus-label">Filière</label>
-                            <input type="text" class="form-control floating">
+                            <input type="text" class="form-control floating" name="chercher_valeur">
                         </div>
                     </div>
                    
@@ -149,7 +149,7 @@ session_start();
                                         <th>Nom filière</th>
                                         <th>Nom faculté</th>
                                         <th>Nombre d'année</th>
-                                        <th>mot de passse</th>
+                                        
                                         <th>Chef du filière</th>
                                        
                                         
@@ -157,26 +157,24 @@ session_start();
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                      <td>yosra</td>
-                                        <td>mouh</td>
-                                        <td>albinasimonis@example.com</td>
-                                        <td>828-634-2744</td>
-                                        <td>7 May 2015</td>
-                                      
-                                        <td class="text-right">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item" href="edit_filiere.php"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                                    <a class="dropdown-item" href="deleteFiliere.php" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    
-									
-									
+                                <?php
+                                include("config.php");
+
+                                // Exécuter une requête de sélection
+                                $requeteSelect = "SELECT * FROM filiere";
+                                $result = $mysqli->query($requeteSelect);
+                                while ($row = mysqli_fetch_array($result)) {
+                                    echo "<tr>";
+                                    echo "<td>". $row['nom_filiere'] ."</td>";
+                                    echo "<td>". $row['nom_faculte'] ."</td>";
+                                    echo "<td>". $row['nbr_annee'] ."</td>";
+                                    echo "<td>". $row['chef_filiere'] ."</td>";
+                                   
+                                    echo "<td><a href=\"edit_filiere.php?id_filiere=".$row['id_filiere']."\" style=\"margin-right:10px; color:green;\"><i class=\"fa fa-pencil m-r-5\"></i></a>
+                                     <a href=\"deleteFiliere.php?id_filiere=" . $row['id_filiere'] . "\" style=\"margin-right:10px; color:red;\" onClick=\"return confirm
+                                     ('Êtes-vous sûr de vouloir supprimer cette filiere ?');\"><i class=\"fa fa-trash-o m-r-5\"></i></a></td>";
+                                    echo "</tr>";
+                                } ?>
 									
                                 </tbody>
                             </table>
@@ -193,7 +191,27 @@ session_start();
     <script src="assets/js/app.js"></script>
 	<script src="assets/js/moment.min.js"></script>
 	<script src="assets/js/bootstrap-datetimepicker.min.js"></script>
-	
+	<script>
+    $(document).ready(function() {
+        // Événement de clic sur le bouton de recherche
+        $('a.btn-success').click(function() {
+            // Récupérer la valeur de recherche
+            var searchValue = $('input[name="chercher_valeur"]').val().toLowerCase();
+
+            // Parcourir toutes les lignes du tableau
+            $('table tbody tr').each(function() {
+                var rowText = $(this).text().toLowerCase();
+
+                // Afficher ou masquer les lignes en fonction de la correspondance avec la valeur de recherche
+                if (rowText.indexOf(searchValue) !== -1) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+    });
+</script>
 </body>
 
 

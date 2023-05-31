@@ -16,19 +16,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->execute();
     $result = $stmt->get_result();
     $admin = $result->fetch_assoc();
-    //$id_admin = "SELECT identifiant FROM admin WHERE identifiant = ? OR email_admin = ? LIMIT 1";
+
     // Validate the credentials
     if ($admin && ($password == $admin['mdp_admin'])) {
         // Authentication successful
         // Redirect the admin to the desired page or perform any other action
-        $_SESSION['admin'] = $admin['identifiant'];       
-         header('Location: index-2.php');
+        $_SESSION['admin'] = $admin['identifiant'];
+        $_SESSION['email_admin'] = $admin['email_admin'];
+        
+        header('Location: index-2.php');
         exit;
     } else {
         // Authentication failed
         $error = 'Invalid username/email or password';
     }
 }
+
+// Retrieve the email of the admin from the session and store it in the $emailAdmin variable
+$emailAdmin = isset($_SESSION['email_admin']) ? $_SESSION['email_admin'] : '';
+
 ?>
 
 <!DOCTYPE html>
