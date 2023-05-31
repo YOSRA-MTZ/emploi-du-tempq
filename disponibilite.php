@@ -159,6 +159,7 @@ $result = mysqli_query($mysqli, $sql);
                                         <th>Jeudi</th>
                                         <th>Vendredi</th>
                                         <th>Samedi</th>
+                                        <th>Dimanche</th>
                                         <th>Action</th>
 
                                     </tr>
@@ -174,11 +175,11 @@ $result = mysqli_query($mysqli, $sql);
                                         echo "<td>" . $row['nom_enseignant'] . "</td>";
 
                                         echo "<td>";
-                                        if ($row['lundi'] == 1) {
+                                        if ($row['MONDAY'] == 1) {
                                             echo "AM";
-                                        } elseif ($row['lundi'] == 2) {
+                                        } elseif ($row['MONDAY'] == 2) {
                                             echo "PM";
-                                        } elseif ($row['lundi'] == 3) {
+                                        } elseif ($row['MONDAY'] == 3) {
                                             echo "AM/PM";
                                         } else {
                                             echo "-";
@@ -186,11 +187,11 @@ $result = mysqli_query($mysqli, $sql);
                                         echo "</td>";
 
                                         echo "<td>";
-                                        if ($row['mardi'] == 1) {
+                                        if ($row['TUESDAY'] == 1) {
                                             echo "AM";
-                                        } elseif ($row['mardi'] == 2) {
+                                        } elseif ($row['TUESDAY'] == 2) {
                                             echo "PM";
-                                        } elseif ($row['mardi'] == 3) {
+                                        } elseif ($row['TUESDAY'] == 3) {
                                             echo "AM/PM";
                                         } else {
                                             echo "-";
@@ -198,11 +199,11 @@ $result = mysqli_query($mysqli, $sql);
                                         echo "</td>";
 
                                         echo "<td>";
-                                        if ($row['mercredi'] == 1) {
+                                        if ($row['WEDNESDAY'] == 1) {
                                             echo "AM";
-                                        } elseif ($row['mercredi'] == 2) {
+                                        } elseif ($row['WEDNESDAY'] == 2) {
                                             echo "PM";
-                                        } elseif ($row['mercredi'] == 3) {
+                                        } elseif ($row['WEDNESDAY'] == 3) {
                                             echo "AM/PM";
                                         } else {
                                             echo "-";
@@ -210,11 +211,11 @@ $result = mysqli_query($mysqli, $sql);
                                         echo "</td>";
 
                                         echo "<td>";
-                                        if ($row['jeudi'] == 1) {
+                                        if ($row['THURSDAY'] == 1) {
                                             echo "AM";
-                                        } elseif ($row['jeudi'] == 2) {
+                                        } elseif ($row['THURSDAY'] == 2) {
                                             echo "PM";
-                                        } elseif ($row['jeudi'] == 3) {
+                                        } elseif ($row['THURSDAY'] == 3) {
                                             echo "AM/PM";
                                         } else {
                                             echo "-";
@@ -222,11 +223,11 @@ $result = mysqli_query($mysqli, $sql);
                                         echo "</td>";
 
                                         echo "<td>";
-                                        if ($row['vendredi'] == 1) {
+                                        if ($row['FRIDAY'] == 1) {
                                             echo "AM";
-                                        } elseif ($row['vendredi'] == 2) {
+                                        } elseif ($row['FRIDAY'] == 2) {
                                             echo "PM";
-                                        } elseif ($row['vendredi'] == 3) {
+                                        } elseif ($row['FRIDAY'] == 3) {
                                             echo "AM/PM";
                                         } else {
                                             echo "-";
@@ -235,11 +236,22 @@ $result = mysqli_query($mysqli, $sql);
 
                                         echo "<td>";
 
-                                        if ($row['samedi'] == 1) {
+                                        if ($row['SATURDAY'] == 1) {
                                             echo "AM";
-                                        } elseif ($row['samedi'] == 2) {
+                                        } elseif ($row['SATURDAY'] == 2) {
                                             echo "PM";
-                                        } elseif ($row['samedi'] == 3) {
+                                        } elseif ($row['SATURDAY'] == 3) {
+                                            echo "AM/PM";
+                                        } else {
+                                            echo "-";
+                                        }
+                                        echo "</td>";
+                                        echo "<td>";
+                                        if ($row['SUNDAY'] == 1) {
+                                            echo "AM";
+                                        } elseif ($row['SUNDAY'] == 2) {
+                                            echo "PM";
+                                        } elseif ($row['SUNDAY'] == 3) {
                                             echo "AM/PM";
                                         } else {
                                             echo "-";

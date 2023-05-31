@@ -126,7 +126,7 @@ include 'config.php'; ?>
                                 <div class="col-sm-6 ">
                                     <div class="form-group">
                                         <label>Enseignant</label>
-                                        <select class="select" name="enseignant" id="enseignant" >
+                                        <select class="select" name="id_enseignant" id="id_enseignant" >
 
                                             <option value="">Selectioner Enseignant</option>
                                             <?php
@@ -149,7 +149,7 @@ include 'config.php'; ?>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Lundi</label>
-                                        <select class="select" name="lundi" id="lundi">
+                                        <select class="select" name="MONDAY" id="MONDAY">
                                             <option value="">-</option>
                                             <?php
                                             $result3 = mysqli_query($mysqli, "SELECT * FROM horaire");
@@ -169,7 +169,7 @@ include 'config.php'; ?>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Mardi</label>
-                                        <select class="select"name="mardi" id="mardi">
+                                        <select class="select"name="TUESDAY" id="TUESDAY">
                                             <option value="">-</option>
                                             <?php
                                             $result3 = mysqli_query($mysqli, "SELECT * FROM horaire");
@@ -188,7 +188,7 @@ include 'config.php'; ?>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Mercredi</label>
-                                        <select class="select"name="mercredi" id="mercredi">
+                                        <select class="select"name="WEDNESDAY" id="WEDNESDAY">
                                             <option value="">-</option>
                                             <?php
                                             $result3 = mysqli_query($mysqli, "SELECT * FROM horaire");
@@ -208,7 +208,7 @@ include 'config.php'; ?>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Jeudi</label>
-                                        <select class="select"name="jeudi" id="jeudi">
+                                        <select class="select"name="THURSDAY" id="THURSDAY">
                                             <option value="">-</option>
                                             <?php
                                             $result3 = mysqli_query($mysqli, "SELECT * FROM horaire");
@@ -228,7 +228,7 @@ include 'config.php'; ?>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Vendredi</label>
-                                        <select class="select"name="vendredi" id="vendredi">
+                                        <select class="select"name="FRIDAY" id="FRIDAY">
                                             <option value="">-</option>
                                             <?php
                                             $result3 = mysqli_query($mysqli, "SELECT * FROM horaire");
@@ -248,7 +248,7 @@ include 'config.php'; ?>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Samedi</label>
-                                        <select class="select"name="samedi" id="samedi">
+                                        <select class="select"name="SATURDAY" id="SATURDAY">
                                             <option value="">-</option>
                                             <?php
                                             $result3 = mysqli_query($mysqli, "SELECT * FROM horaire");
@@ -264,7 +264,25 @@ include 'config.php'; ?>
                                         </select>
                                     </div>
                                 </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Dimanche</label>
+                                        <select class="select"name="SUNDAY" id="SUNDAY">
+                                            <option value="">-</option>
+                                            <?php
+                                            $result3 = mysqli_query($mysqli, "SELECT * FROM horaire");
 
+                                            while ($rowa = mysqli_fetch_array($result3)) {
+
+                                            ?>
+                                                <option value="<?php echo $rowa['id_horaire'] ?>"><?php echo $rowa['nom_horaire'] ?></option>
+                                            <?php
+                                            }
+                                            ?>
+
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="m-t-20  text-center">
                                     <button class="btn btn-primary submit-btn" ><i class="fa fa-plus" aria-hidden="true"></i> Ajouter Disponibilité</button>
                                 </div>
