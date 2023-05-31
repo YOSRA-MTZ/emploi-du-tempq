@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 29 mai 2023 à 21:35
--- Version du serveur : 10.4.25-MariaDB
--- Version de PHP : 8.1.10
+-- Généré le : mer. 31 mai 2023 à 12:24
+-- Version du serveur : 10.4.27-MariaDB
+-- Version de PHP : 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,7 +32,7 @@ CREATE TABLE `admin` (
   `identifiant` varchar(50) NOT NULL,
   `mdp_admin` varchar(50) NOT NULL,
   `email_admin` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `admin`
@@ -51,7 +51,7 @@ INSERT INTO `admin` (`id_admin`, `identifiant`, `mdp_admin`, `email_admin`) VALU
 CREATE TABLE `appartient` (
   `id_module` int(11) NOT NULL,
   `id_filiere` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `appartient`
@@ -73,7 +73,7 @@ CREATE TABLE `class` (
   `niveau` varchar(50) NOT NULL,
   `annee_scolaire` varchar(50) NOT NULL,
   `id_filiere` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `class`
@@ -94,78 +94,43 @@ INSERT INTO `class` (`id_class`, `nom_class`, `niveau`, `annee_scolaire`, `id_fi
 CREATE TABLE `concerner` (
   `id_seance` int(11) NOT NULL,
   `id_planning` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `concerner`
 --
 
 INSERT INTO `concerner` (`id_seance`, `id_planning`) VALUES
-(1, 1),
-(2, 1),
-(13, 1),
-(14, 1),
-(15, 1),
-(16, 1),
-(17, 1),
-(18, 1),
-(19, 1),
-(20, 1),
-(21, 1),
-(22, 1),
-(23, 1),
-(24, 1),
-(25, 1),
-(26, 1),
-(27, 1),
-(28, 1),
-(29, 1),
-(30, 1),
-(31, 1),
-(33, 1),
-(34, 1),
-(35, 1),
-(36, 1),
-(37, 1),
-(38, 1),
-(39, 1),
-(40, 1),
-(41, 1),
-(42, 1),
-(43, 1),
-(44, 1),
-(45, 1),
-(46, 1),
-(47, 1),
-(48, 1),
-(49, 1),
-(50, 1),
-(51, 1),
-(52, 1),
-(53, 1),
-(54, 1),
-(55, 1),
-(56, 1),
-(57, 1);
+(58, 1),
+(60, 1),
+(73, 1),
+(75, 1),
+(81, 1),
+(83, 1),
+(84, 1),
+(85, 1);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `contient`
+-- Structure de la table `concerngroupe`
 --
 
-CREATE TABLE `contient` (
-  `id_horaire` int(11) NOT NULL,
-  `id_dispo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `concerngroupe` (
+  `id` int(11) NOT NULL,
+  `id_seance` int(11) DEFAULT NULL,
+  `id_group` int(11) DEFAULT NULL,
+  `id_class` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `contient`
+-- Déchargement des données de la table `concerngroupe`
 --
 
-INSERT INTO `contient` (`id_horaire`, `id_dispo`) VALUES
-(1, 1),
-(1, 2);
+INSERT INTO `concerngroupe` (`id`, `id_seance`, `id_group`, `id_class`) VALUES
+(1, 83, 1, 2),
+(2, 84, 1, 1),
+(3, 85, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -184,14 +149,7 @@ CREATE TABLE `demande` (
   `Date_Coursa` date NOT NULL,
   `Heure_Report` time(6) NOT NULL,
   `id_admin` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Déchargement des données de la table `demande`
---
-
-INSERT INTO `demande` (`id_demande`, `contenu`, `statut_demande`, `id_enseignant`, `Heure_Coursa`, `Module`, `Date_Report`, `Date_Coursa`, `Heure_Report`, `id_admin`) VALUES
-(4, 'azerty', 'encours', 1, '16:31:00.000000', 'Mecanique', '2023-05-25', '2023-05-29', '16:31:00.000000', 1);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -201,22 +159,22 @@ INSERT INTO `demande` (`id_demande`, `contenu`, `statut_demande`, `id_enseignant
 
 CREATE TABLE `disponibilite` (
   `id_dispo` int(11) NOT NULL,
-  `lundi` varchar(50) NOT NULL,
-  `mardi` varchar(50) NOT NULL,
-  `mercredi` varchar(50) NOT NULL,
-  `jeudi` varchar(50) NOT NULL,
-  `vendredi` varchar(50) NOT NULL,
-  `samedi` varchar(50) NOT NULL,
-  `id_enseignant` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `lundi` int(11) DEFAULT NULL,
+  `mardi` int(11) DEFAULT NULL,
+  `mercredi` int(11) DEFAULT NULL,
+  `jeudi` int(11) DEFAULT NULL,
+  `vendredi` int(11) DEFAULT NULL,
+  `samedi` int(11) DEFAULT NULL,
+  `dimanche` int(11) DEFAULT NULL,
+  `id_enseignant` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `disponibilite`
 --
 
-INSERT INTO `disponibilite` (`id_dispo`, `lundi`, `mardi`, `mercredi`, `jeudi`, `vendredi`, `samedi`, `id_enseignant`) VALUES
-(1, '', '', '', '', '', '2', 1),
-(2, '', '3', '', '', '', '', 2);
+INSERT INTO `disponibilite` (`id_dispo`, `lundi`, `mardi`, `mercredi`, `jeudi`, `vendredi`, `samedi`, `dimanche`, `id_enseignant`) VALUES
+(3, 1, 3, NULL, 2, 3, 3, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -229,14 +187,14 @@ CREATE TABLE `disponibilite_salle` (
   `date_dispo_salle` varchar(40) NOT NULL,
   `semaine_dispo_salle` int(11) NOT NULL,
   `id_salle_salle` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `disponibilite_salle`
 --
 
 INSERT INTO `disponibilite_salle` (`id_dispo_salle`, `date_dispo_salle`, `semaine_dispo_salle`, `id_salle_salle`) VALUES
-(1, '10:00-12:00TUESDAY', 1, 1),
+(1, '10:00-12:00|THURSDAY', 1, 1),
 (2, '10:00-12:00MONDAY', 1, 2);
 
 -- --------------------------------------------------------
@@ -251,7 +209,7 @@ CREATE TABLE `element_module` (
   `volume_horaire` varchar(50) NOT NULL,
   `coefficient` varchar(50) NOT NULL,
   `id_module` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `element_module`
@@ -275,7 +233,7 @@ CREATE TABLE `enseignant` (
   `telephone` varchar(50) NOT NULL,
   `statut_enseignant` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `enseignant`
@@ -294,7 +252,7 @@ INSERT INTO `enseignant` (`id_enseignant`, `nom_enseignant`, `email_enseignant`,
 CREATE TABLE `enseigne` (
   `id_element_module` int(11) NOT NULL,
   `id_enseignant` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `enseigne`
@@ -313,59 +271,22 @@ INSERT INTO `enseigne` (`id_element_module`, `id_enseignant`) VALUES
 CREATE TABLE `est_plannifier` (
   `id_seance` int(11) NOT NULL,
   `id_element_module` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `est_plannifier`
 --
 
 INSERT INTO `est_plannifier` (`id_seance`, `id_element_module`) VALUES
-(1, 1),
-(2, 2),
-(13, 1),
-(14, 1),
-(15, 1),
-(16, 1),
-(17, 1),
-(18, 1),
-(19, 1),
-(20, 1),
-(21, 1),
-(22, 1),
-(23, 1),
-(24, 1),
-(25, 1),
-(26, 1),
-(27, 1),
-(28, 1),
-(29, 1),
-(30, 1),
-(31, 1),
-(33, 1),
-(34, 1),
-(35, 1),
-(36, 1),
-(37, 1),
-(38, 1),
-(39, 1),
-(40, 1),
-(41, 1),
-(42, 1),
-(43, 1),
-(44, 1),
-(45, 1),
-(46, 1),
-(47, 1),
-(48, 1),
-(49, 1),
-(50, 1),
-(51, 1),
-(52, 1),
-(53, 1),
-(54, 1),
-(55, 1),
-(56, 1),
-(57, 1);
+(58, 1),
+(60, 1),
+(73, 2),
+(75, 1),
+(75, 2),
+(81, 1),
+(83, 1),
+(84, 1),
+(85, 1);
 
 -- --------------------------------------------------------
 
@@ -383,7 +304,7 @@ CREATE TABLE `etudiant` (
   `naissance` varchar(50) NOT NULL,
   `telephone` varchar(50) NOT NULL,
   `id_group` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `etudiant`
@@ -405,7 +326,7 @@ CREATE TABLE `filiere` (
   `nom_filiere` varchar(50) NOT NULL,
   `nom_faculte` varchar(50) NOT NULL,
   `nbr_annee` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `filiere`
@@ -427,7 +348,7 @@ CREATE TABLE `groupe` (
   `nom_group` varchar(50) NOT NULL,
   `id_class` int(11) NOT NULL,
   `id_planning` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `groupe`
@@ -448,7 +369,7 @@ INSERT INTO `groupe` (`id_group`, `nom_group`, `id_class`, `id_planning`) VALUES
 CREATE TABLE `horaire` (
   `id_horaire` int(11) NOT NULL,
   `nom_horaire` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `horaire`
@@ -469,7 +390,7 @@ CREATE TABLE `module` (
   `id_module` int(11) NOT NULL,
   `nom_module` varchar(50) NOT NULL,
   `semestre` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `module`
@@ -482,6 +403,20 @@ INSERT INTO `module` (`id_module`, `nom_module`, `semestre`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `id_notification` int(11) NOT NULL,
+  `id_seance` int(11) DEFAULT NULL,
+  `id_enseignant` int(11) DEFAULT NULL,
+  `id_group` int(11) DEFAULT NULL,
+  `type_seance` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `planning`
 --
 
@@ -489,7 +424,7 @@ CREATE TABLE `planning` (
   `id_planning` int(11) NOT NULL,
   `nom_planning` varchar(50) NOT NULL,
   `id_admin` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `planning`
@@ -512,7 +447,7 @@ CREATE TABLE `salle` (
   `etage_salle` varchar(50) NOT NULL,
   `campus` varchar(50) NOT NULL,
   `dispo_salle` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `salle`
@@ -537,63 +472,21 @@ CREATE TABLE `seance` (
   `statut_seance` varchar(50) NOT NULL,
   `id_salle` int(11) NOT NULL,
   `id_semaine` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `seance`
 --
 
 INSERT INTO `seance` (`id_seance`, `date_seance`, `debut_seance`, `fin_seance`, `commentaire_seance`, `statut_seance`, `id_salle`, `id_semaine`) VALUES
-(1, '2023-01-01', '08:00', '10:00', 'Lecture', 'Scheduled', 1, NULL),
-(2, '2023-01-02', '14:00', '16:00', 'Lab', 'Scheduled', 2, NULL),
-(10, '2023-11-06', '8:00', '10:00', '8:00-10:00|MONDAY', 'Rattrapage', 1, 3),
-(11, '2023-11-06', '8:00', '10:00', '8:00-10:00|MONDAY', 'Rattrapage', 1, 3),
-(12, '2023-11-06', '8:00', '10:00', '8:00-10:00|MONDAY', 'Rattrapage', 1, 3),
-(13, '2023-11-06', '8:00', '10:00', '8:00-10:00|MONDAY', 'Rattrapage', 1, 3),
-(14, '2023-11-06', '8:00', '10:00', '8:00-10:00|MONDAY', 'Rattrapage', 1, 3),
-(15, '2023-11-08', '8:00', '10:00', '8:00-10:00|WEDNESDAY', 'Annuler', 2, 2),
-(16, '2023-11-08', '8:00', '10:00', '8:00-10:00|WEDNESDAY', 'Annuler', 2, 2),
-(17, '', '', '', '', 'Rattrapage', 2, 3),
-(18, '', '', '', '', 'Rattrapage', 2, 3),
-(19, '2023-11-09', '10:00', '12:00', '10:00-12:00|THURSDAY', 'Normal', 2, 3),
-(20, '2023-11-10', '12:00', '14:00', '12:00-14:00|FRIDAY', 'Annuler', 2, 1),
-(21, '2023-11-06', '8:00', '10:00', '8:00-10:00|MONDAY', 'Rattrapage', 1, 3),
-(22, '2023-11-06', '8:00', '10:00', '8:00-10:00|MONDAY', 'Rattrapage', 1, 3),
-(23, '2023-11-06', '8:00', '10:00', '8:00-10:00|MONDAY', 'Rattrapage', 1, 3),
-(24, '2023-11-06', '8:00', '10:00', '8:00-10:00|MONDAY', 'Rattrapage', 1, 3),
-(25, '2023-11-06', '8:00', '10:00', '8:00-10:00|MONDAY', 'Rattrapage', 1, 3),
-(26, '2023-11-06', '8:00', '10:00', '8:00-10:00|MONDAY', 'Rattrapage', 1, 3),
-(27, '2023-11-06', '8:00', '10:00', '8:00-10:00|MONDAY', 'Rattrapage', 1, 3),
-(28, '2023-11-06', '8:00', '10:00', '8:00-10:00|MONDAY', 'Rattrapage', 1, 3),
-(29, '2023-11-08', '8:00', '10:00', '8:00-10:00|WEDNESDAY', 'Normal', 2, 2),
-(30, '2023-11-07', '8:00', '10:00', '8:00-10:00|TUESDAY', 'Normal', 1, 1),
-(31, '2023-11-11', '8:00', '10:00', '8:00-10:00|SATURDAY', 'Annuler', 2, 3),
-(32, '2023-11-11', '8:00', '10:00', '8:00-10:00|SATURDAY', 'Annuler', 2, 3),
-(33, '2023-11-11', '8:00', '10:00', '8:00-10:00|SATURDAY', 'Annuler', 2, 3),
-(34, '2023-11-11', '8:00', '10:00', '8:00-10:00|SATURDAY', 'Annuler', 2, 3),
-(35, '2023-11-11', '8:00', '10:00', '8:00-10:00|SATURDAY', 'Annuler', 2, 3),
-(36, '2023-11-11', '8:00', '10:00', '8:00-10:00|SATURDAY', 'Annuler', 2, 3),
-(37, '2023-11-11', '8:00', '10:00', '8:00-10:00|SATURDAY', 'Annuler', 2, 3),
-(38, '2023-11-11', '8:00', '10:00', '8:00-10:00|SATURDAY', 'Annuler', 2, 3),
-(39, '2023-11-11', '8:00', '10:00', '8:00-10:00|SATURDAY', 'Annuler', 2, 3),
-(40, '2023-11-11', '8:00', '10:00', '8:00-10:00|SATURDAY', 'Annuler', 2, 3),
-(41, '2023-11-11', '8:00', '10:00', '8:00-10:00|SATURDAY', 'Annuler', 2, 3),
-(42, '2023-11-11', '8:00', '10:00', '8:00-10:00|SATURDAY', 'Annuler', 2, 3),
-(43, '2023-11-07', '8:00', '10:00', '8:00-10:00|TUESDAY', 'Normal', 1, 1),
-(44, '2023-11-07', '8:00', '10:00', '8:00-10:00|TUESDAY', 'Normal', 1, 1),
-(45, '2023-11-07', '8:00', '10:00', '8:00-10:00|TUESDAY', 'Normal', 1, 1),
-(46, '2023-11-07', '8:00', '10:00', '8:00-10:00|TUESDAY', 'Normal', 1, 1),
-(47, '2023-11-07', '8:00', '10:00', '8:00-10:00|TUESDAY', 'Normal', 1, 1),
-(48, '2023-11-07', '8:00', '10:00', '8:00-10:00|TUESDAY', 'Normal', 1, 1),
-(49, '2023-11-07', '8:00', '10:00', '8:00-10:00|TUESDAY', 'Normal', 1, 1),
-(50, '2023-11-07', '8:00', '10:00', '8:00-10:00|TUESDAY', 'Normal', 1, 1),
-(51, '2023-11-08', '8:00', '10:00', '8:00-10:00|WEDNESDAY', 'Annuler', 2, 5),
-(52, '2023-11-10', '10:00', '12:00', '10:00-12:00|FRIDAY', 'Rattrapage', 2, 5),
-(53, '2023-11-10', '12:00', '14:00', '12:00-14:00|FRIDAY', 'Rattrapage', 2, 5),
-(54, '2023-11-09', '10:00', '12:00', '10:00-12:00|THURSDAY', 'Normal', 2, 3),
-(55, '2023-11-07', '8:00', '10:00', '8:00-10:00|TUESDAY', 'Normal', 1, 1),
-(56, '2023-11-09', '10:00', '12:00', '10:00-12:00|THURSDAY', 'Normal', 2, 3),
-(57, '2023-11-07', '8:00', '10:00', '8:00-10:00|TUESDAY', 'Normal', 1, 1);
+(58, '2023-11-06', '8:00', '10:00', '8:00-10:00|MONDAY', 'Normal', 2, 2),
+(60, '2023-11-07', '10:00', '12:00', '10:00-12:00|TUESDAY', 'Normal', 1, 2),
+(73, '2023-11-07', '10:00', '12:00', '10:00-12:00|TUESDAY', 'Rattrapage', 1, 1),
+(75, '2023-11-08', '10:00', '12:00', '10:00-12:00|WEDNESDAY', 'Rattrapage', 1, 1),
+(81, '2023-11-07', '8:00', '10:00', '8:00-10:00|TUESDAY', 'Normal', 1, 2),
+(83, '2023-11-06', '10:00', '12:00', '10:00-12:00|MONDAY', 'Normal', 1, 2),
+(84, '2023-11-06', '8:00', '10:00', '8:00-10:00|MONDAY', 'Rattrapage', 1, 1),
+(85, '2023-11-07', '8:00', '10:00', '8:00-10:00|TUESDAY', 'Rattrapage', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -606,7 +499,7 @@ CREATE TABLE `semaine` (
   `date_debut` varchar(30) NOT NULL,
   `date_fin` varchar(30) NOT NULL,
   `commentaire` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `semaine`
@@ -661,11 +554,13 @@ ALTER TABLE `concerner`
   ADD KEY `concerner__planning0_FK` (`id_planning`);
 
 --
--- Index pour la table `contient`
+-- Index pour la table `concerngroupe`
 --
-ALTER TABLE `contient`
-  ADD PRIMARY KEY (`id_horaire`,`id_dispo`),
-  ADD KEY `contient_disponibilite0_FK` (`id_dispo`);
+ALTER TABLE `concerngroupe`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_seance` (`id_seance`),
+  ADD KEY `id_group` (`id_group`),
+  ADD KEY `id_class` (`id_class`);
 
 --
 -- Index pour la table `demande`
@@ -680,7 +575,14 @@ ALTER TABLE `demande`
 --
 ALTER TABLE `disponibilite`
   ADD PRIMARY KEY (`id_dispo`),
-  ADD KEY `disponiblite_enseignant_FK` (`id_enseignant`);
+  ADD KEY `disponiblite_enseignant_FK` (`id_enseignant`),
+  ADD KEY `lundi` (`lundi`),
+  ADD KEY `mardi` (`mardi`),
+  ADD KEY `mercredi` (`mercredi`),
+  ADD KEY `jeudi` (`jeudi`),
+  ADD KEY `vendredi` (`vendredi`),
+  ADD KEY `samedi` (`samedi`),
+  ADD KEY `dimanche` (`dimanche`);
 
 --
 -- Index pour la table `disponibilite_salle`
@@ -750,6 +652,15 @@ ALTER TABLE `module`
   ADD PRIMARY KEY (`id_module`);
 
 --
+-- Index pour la table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`id_notification`),
+  ADD UNIQUE KEY `unique_seance_type` (`id_seance`,`type_seance`),
+  ADD KEY `id_enseignant` (`id_enseignant`),
+  ADD KEY `id_group` (`id_group`);
+
+--
 -- Index pour la table `planning`
 --
 ALTER TABLE `planning`
@@ -767,6 +678,7 @@ ALTER TABLE `salle`
 --
 ALTER TABLE `seance`
   ADD PRIMARY KEY (`id_seance`),
+  ADD UNIQUE KEY `unique_id_commentaire_semaine` (`id_semaine`,`commentaire_seance`),
   ADD KEY `seance__salle_FK` (`id_salle`),
   ADD KEY `fk_semaine` (`id_semaine`);
 
@@ -793,16 +705,22 @@ ALTER TABLE `class`
   MODIFY `id_class` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT pour la table `concerngroupe`
+--
+ALTER TABLE `concerngroupe`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT pour la table `demande`
 --
 ALTER TABLE `demande`
-  MODIFY `id_demande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_demande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `disponibilite`
 --
 ALTER TABLE `disponibilite`
-  MODIFY `id_dispo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_dispo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `disponibilite_salle`
@@ -868,7 +786,7 @@ ALTER TABLE `salle`
 -- AUTO_INCREMENT pour la table `seance`
 --
 ALTER TABLE `seance`
-  MODIFY `id_seance` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id_seance` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT pour la table `semaine`
@@ -901,11 +819,12 @@ ALTER TABLE `concerner`
   ADD CONSTRAINT `concerner__seance_FK` FOREIGN KEY (`id_seance`) REFERENCES `seance` (`id_seance`);
 
 --
--- Contraintes pour la table `contient`
+-- Contraintes pour la table `concerngroupe`
 --
-ALTER TABLE `contient`
-  ADD CONSTRAINT `contient_attribut_FK` FOREIGN KEY (`id_horaire`) REFERENCES `horaire` (`id_horaire`),
-  ADD CONSTRAINT `contient_disponibilite0_FK` FOREIGN KEY (`id_dispo`) REFERENCES `disponibilite` (`id_dispo`);
+ALTER TABLE `concerngroupe`
+  ADD CONSTRAINT `concerngroupe_ibfk_1` FOREIGN KEY (`id_seance`) REFERENCES `seance` (`id_seance`),
+  ADD CONSTRAINT `concerngroupe_ibfk_2` FOREIGN KEY (`id_group`) REFERENCES `groupe` (`id_group`),
+  ADD CONSTRAINT `concerngroupe_ibfk_3` FOREIGN KEY (`id_class`) REFERENCES `class` (`id_class`);
 
 --
 -- Contraintes pour la table `demande`
@@ -918,6 +837,13 @@ ALTER TABLE `demande`
 -- Contraintes pour la table `disponibilite`
 --
 ALTER TABLE `disponibilite`
+  ADD CONSTRAINT `disponibilite_ibfk_1` FOREIGN KEY (`lundi`) REFERENCES `horaire` (`id_horaire`),
+  ADD CONSTRAINT `disponibilite_ibfk_2` FOREIGN KEY (`mardi`) REFERENCES `horaire` (`id_horaire`),
+  ADD CONSTRAINT `disponibilite_ibfk_3` FOREIGN KEY (`mercredi`) REFERENCES `horaire` (`id_horaire`),
+  ADD CONSTRAINT `disponibilite_ibfk_4` FOREIGN KEY (`jeudi`) REFERENCES `horaire` (`id_horaire`),
+  ADD CONSTRAINT `disponibilite_ibfk_5` FOREIGN KEY (`vendredi`) REFERENCES `horaire` (`id_horaire`),
+  ADD CONSTRAINT `disponibilite_ibfk_6` FOREIGN KEY (`samedi`) REFERENCES `horaire` (`id_horaire`),
+  ADD CONSTRAINT `disponibilite_ibfk_7` FOREIGN KEY (`dimanche`) REFERENCES `horaire` (`id_horaire`),
   ADD CONSTRAINT `disponiblite_enseignant_FK` FOREIGN KEY (`id_enseignant`) REFERENCES `enseignant` (`id_enseignant`);
 
 --
@@ -958,6 +884,14 @@ ALTER TABLE `etudiant`
 ALTER TABLE `groupe`
   ADD CONSTRAINT `groupe__class_FK` FOREIGN KEY (`id_class`) REFERENCES `class` (`id_class`),
   ADD CONSTRAINT `id_planning` FOREIGN KEY (`id_planning`) REFERENCES `planning` (`id_planning`);
+
+--
+-- Contraintes pour la table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD CONSTRAINT `notifications_ibfk_1` FOREIGN KEY (`id_seance`) REFERENCES `seance` (`id_seance`),
+  ADD CONSTRAINT `notifications_ibfk_2` FOREIGN KEY (`id_enseignant`) REFERENCES `enseignant` (`id_enseignant`),
+  ADD CONSTRAINT `notifications_ibfk_3` FOREIGN KEY (`id_group`) REFERENCES `groupe` (`id_group`);
 
 --
 -- Contraintes pour la table `planning`
