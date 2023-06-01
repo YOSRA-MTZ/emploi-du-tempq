@@ -150,7 +150,7 @@ include 'config.php'; ?>
                                     <div class="form-group">
                                         <label>Lundi</label>
                                         <select class="select" name="MONDAY" id="MONDAY">
-                                            <option value="">-</option>
+                                            <option value="NULL">-</option>
                                             <?php
                                             $result3 = mysqli_query($mysqli, "SELECT * FROM horaire");
 
