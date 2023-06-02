@@ -1,11 +1,41 @@
 <?php
 session_start();
+include("config.php");
+
+// Vérifier si l'ID de la classe à éditer a été fourni
+if (isset($_GET['id_class']) && !empty($_GET['id_class'])) {
+    $id_class = $_GET['id_class'];
+
+    // Récupérer les données de la classe depuis la base de données
+    $requeteClass = "SELECT * FROM class WHERE id_class = '$id_class'";
+    $resultatClass = $mysqli->query($requeteClass);
+
+    // Vérifier si la classe existe
+    if ($resultatClass->num_rows > 0) {
+        $row = $resultatClass->fetch_assoc();
+        $nom_class = $row['nom_class'];
+        $niveau = $row['niveau'];
+        $annee_scolaire = $row['annee_scolaire'];
+        $id_filiere = $row['id_filiere'];
+    } else {
+        echo "Aucune classe trouvée avec cet ID.";
+        exit;
+    }
+} else {
+    echo "ID de la classe non spécifié.";
+    exit;
+}
+
+// Récupérer les données des filières depuis la base de données
+$requeteFiliere = "SELECT * FROM filiere";
+$resultatFiliere = $mysqli->query($requeteFiliere);
+$filieres = array();
+while ($row = $resultatFiliere->fetch_assoc()) {
+    $filieres[] = $row;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
-
-
 
 <head>
     <meta charset="utf-8">
@@ -16,11 +46,11 @@ session_start();
     <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/select2.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
 </head>
 
 <body>
     <div class="main-wrapper">
+        <div class="header">
         <div class="header">
             <div class="header-left">
                 <a href="index-2.php" class="logo">
@@ -67,6 +97,7 @@ session_start();
                 </div>
             </div>
         </div>
+        
         <div class="sidebar" id="sidebar">
             <div class="sidebar-inner slimscroll">
                 <div id="sidebar-menu" class="sidebar-menu">
@@ -95,19 +126,20 @@ session_start();
                         <li>
                             <a href="calendar.php"><i class="fa fa-calendar"></i> <span>Calendrier</span></a>
                         </li>
-                        <li class="active">
-                        <a href="disposalle.php"><i class="fa fa-home"></i> <span>Disponibilite salle</span></a>
-                        </li>
+                       
                         <li class="submenu">
                             <a href="#"><i class="fa fa-cog"></i> <span> Paramétrage </span> <span class="menu-arrow"></span></a>
                             <ul style="display: none;">
                                 <li ><a href="enseignant.php">Enseignant</a></li>
                                   <li ><a href="etudiant.php">Etudiant</a></li>
-                                  <li><a href="filiere.php"> Filière</a></li>
+                                  <li ><a href="filiere.php"> Filière</a></li>
                                   <li><a href="salle.php"> Salle</a></li>
 
-                                  <li ><a href="classe.php"> Classe</a></li>
+                                  <li class="active" ><a href="classe.php"> Classe</a></li>
+                              
+                                  
                                  
+
                                 </ul>
                         </li>
                     </ul>
@@ -118,40 +150,47 @@ session_start();
             <div class="content">
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2">
-                        <h3>Modifier Disponiblite Salle</h3>
+                        <h4 class="page-title">Modifier Classe</h4>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-8 offset-lg-2 m-t-30">
-                    <form action="insertDispo.php" method="post" class="php">
+                    <div class="col-lg-8 offset-lg-2">
+                        <form action="modifierClass.php?id_class=<?php echo $id_class; ?>" method="POST">
                             <div class="row">
-                            <div class="col-sm-6 ">
+                                <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label>Salle</label>
-                                        <select class="select" name="enseignant" id="enseignant">
-
-                                            <option value="">Selectioner Salle</option>
-
-
-                                        </select>
-                                        <div class="validate"></div>
+                                        <label>Nom de la classe <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" name="nom_class" value="<?php echo $nom_class; ?>">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label>Semaine</label>
-                                        <input class="form-control" type="Text" name="capacite">
+                                        <label>Niveau</label>
+                                        <input class="form-control" type="number" name="niveau" value="<?php echo $niveau; ?>">
                                     </div>
                                 </div>
-                                <div class="col-sm-12">
+                                <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label>Date</label>
-                                        <input class="form-control" type="date" name="capacite">
+                                        <label>Année scolaire <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="annee" name="annee_scolaire" value="<?php echo $annee_scolaire; ?>">
                                     </div>
-                                </div> 
-
-                                <div class="m-t-20  text-center">
-                                <button class="btn btn-primary submit-btn"><i class="fa fa-pencil" aria-hidden="true"></i> Modifier Disponibilité</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Filière</label>
+                                        <select class="select" name="filiere">
+                                            <option value="">Sélectionner une filière</option>
+                                            <?php foreach ($filieres as $filiere) { ?>
+                                                <option value="<?php echo $filiere['id_filiere']; ?>" <?php if ($id_filiere == $filiere['id_filiere']) echo 'selected'; ?>>
+                                                    <?php echo $filiere['nom_filiere']; ?>
+                                                </option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="m-t-20 text-center">
+                                <button class="btn btn-primary submit-btn">Modifier</button>
                             </div>
                         </form>
                     </div>
@@ -166,9 +205,8 @@ session_start();
             <script src="assets/js/app.js"></script>
             <script src="assets/js/moment.min.js"></script>
             <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
-
+        </div>
+    </div>
 </body>
 
-
-<!-- add-enseignant24:07-->
- </html>
+</html>

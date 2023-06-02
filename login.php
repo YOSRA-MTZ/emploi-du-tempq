@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Authentication successful
         // Redirect the admin to the desired page or perform any other action
         $_SESSION['admin'] = $admin['identifiant'];
-        $_SESSION['email_admin'] = $admin['email_admin'];
+       
         
         header('Location: index-2.php');
         exit;
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Retrieve the email of the admin from the session and store it in the $emailAdmin variable
-$emailAdmin = isset($_SESSION['email_admin']) ? $_SESSION['email_admin'] : '';
+//$emailAdmin = isset($_SESSION['email_admin']) ? $_SESSION['email_admin'] : '';
 
 ?>
 

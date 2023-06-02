@@ -95,9 +95,7 @@ session_start();
                         <li>
                             <a href="calendar.php"><i class="fa fa-calendar"></i> <span>Calendrier</span></a>
                         </li>
-                        <li>
-                        <a href="disposalle.php"><i class="fa fa-home"></i> <span>Disponibilite salle</span></a>
-                        </li>
+                       
                         <li class="submenu">
                             <a href="#"><i class="fa fa-cog"></i> <span> Paramétrage </span> <span class="menu-arrow"></span></a>
                             <ul style="display: none;">
@@ -129,22 +127,35 @@ session_start();
                 </div>
                 <div class="row filter-row">
                 <div class="col-sm-6 col-md-4">
-                        <div class="form-group form-focus select-focus">
-                            <label class="focus-label">Filière</label>
-                            <select class="select floating">
-                            <option>-</option>
-                            </select>
-                        </div>
-                    </div>
+                <div class="form-group form-focus select-focus">
+        <label class="focus-label">Filière</label>
+        <select class="select floating" name="filiereValue">
+            <option>-</option>
+            <?php
+            include("config.php");
+
+            $requeteFilieres = "SELECT id_filiere, nom_filiere FROM filiere";
+            $resultFilieres = $mysqli->query($requeteFilieres);
+
+            while ($rowFiliere = mysqli_fetch_array($resultFilieres)) {
+                echo '<option value="' . $rowFiliere['id_filiere'] . '">' . $rowFiliere['nom_filiere'] . '</option>';
+            }
+            ?>
+        </select>
+    </div>
+</div>
                 <div class="col-sm-6 col-md-4">
                         <div class="form-group form-focus">
                             <label class="focus-label"> Chercher Classe</label>
-                            <input type="text" class="form-control floating">
+                            <input type="text" id="classeValue" class="form-control floating" name="classeValue">
+                            
                         </div>
                     </div>
                    
                     <div class="col-sm-6 col-md-3">
-                        <a href="#" class="btn btn-success btn-block"> Search </a>
+                    <a href="#" id="search-btn" class="btn btn-success btn-block">Search</a>
+
+                        
                     </div>
                 </div>
                 <div class="row">
@@ -164,24 +175,40 @@ session_start();
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                      <td>yosra</td>
-                                        <td>mouh</td>
-                                        <td>albinasimonis@example.com</td>
-                                        <td>828-634-2744</td>
-                                       
-                                      
-                                        <td class="text-right">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item" href="edit_classe.php"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                                    <a class="dropdown-item" href="deleteClasse.php" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    
+                                   
+
+
+                                      <td>                                <?php
+include("config.php");
+
+// Exécuter une requête de sélection
+$requeteSelect = "SELECT * FROM class";
+$result = $mysqli->query($requeteSelect);
+while ($row = mysqli_fetch_array($result)) {
+    echo "<tr>";
+    echo "<td>". $row['nom_class'] ."</td>";
+    echo "<td>". $row['niveau'] ."</td>";
+    echo "<td>". $row['annee_scolaire'] ."</td>";
+    
+
+   // Sélectionner la filière correspondante à partir de son ID
+$requeteFiliere = "SELECT nom_filiere FROM filiere WHERE id_filiere = ".$row['id_filiere'];
+$resultFiliere = $mysqli->query($requeteFiliere);
+
+if ($resultFiliere && $resultFiliere->num_rows > 0) {
+    $rowFiliere = $resultFiliere->fetch_assoc();
+    $nomFiliere = $rowFiliere['nom_filiere'];
+} else {
+    $nomFiliere = "Filière inconnue";
+}
+
+echo "<td>".$nomFiliere."</td>";
+
+    echo "<td><a href=\"edit_class.php?id_class=".$row['id_class']."\" style=\"margin-right:10px; color:green;\"><i class=\"fa fa-pencil m-r-5\"></i></a>
+         <a href=\"delete_class.php?id_class=" . $row['id_class'] . "\" style=\"margin-right:10px; color:red;\" onClick=\"return confirm('Êtes-vous sûr de vouloir supprimer ce classe ?');\"><i class=\"fa fa-trash-o m-r-5\"></i></a></td>";
+    echo "</tr>";
+}
+?>
 									
 									
 									
@@ -200,6 +227,45 @@ session_start();
     <script src="assets/js/app.js"></script>
 	<script src="assets/js/moment.min.js"></script>
 	<script src="assets/js/bootstrap-datetimepicker.min.js"></script>
+    <script>
+    // Attendre que le DOM soit chargé
+    document.addEventListener("DOMContentLoaded", function(event) {
+        // Référence aux éléments DOM
+        var classeInput = document.getElementById("classeValue");
+        var searchBtn = document.getElementById("search-btn");
+        var tableBody = document.querySelector(".fl-table tbody");
+
+        // Fonction de filtrage
+        function filtrerTable(event) {
+            event.preventDefault(); // Empêcher le comportement par défaut du lien
+
+            var classeValue = classeInput.value.toLowerCase();
+
+            // Parcourir chaque ligne du tableau
+            var rows = tableBody.getElementsByTagName("tr");
+            for (var i = 0; i < rows.length; i++) {
+                var row = rows[i];
+                var classeCell = row.getElementsByTagName("td")[0];
+
+                // Vérifier si la valeur de la classe est définie
+                if (classeValue !== "") {
+                    // Vérifier si la classe correspond à la valeur recherchée
+                    if (classeCell.textContent.toLowerCase().indexOf(classeValue) > -1) {
+                        row.style.display = ""; // Afficher la ligne
+                    } else {
+                        row.style.display = "none"; // Masquer la ligne
+                    }
+                } else {
+                    row.style.display = ""; // Afficher toutes les lignes si la valeur n'est pas définie
+                }
+            }
+        }
+
+        // Événement de clic sur le lien de recherche
+        searchBtn.addEventListener("click", filtrerTable);
+    });
+</script>
+
 	
 </body>
 

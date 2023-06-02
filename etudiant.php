@@ -127,81 +127,122 @@ session_start();
                     <a href="add_etudiant.php" class="btn btn-primary float-right btn-rounded m-r-5"><i class="fa fa-plus"></i> Ajouter Etudiant</a>
                     </div>
                 </div>
-                <div class="row filter-row">
-                <div class="col-sm-6 col-md-3">
-                        <div class="form-group form-focus select-focus">
-                            <label class="focus-label">Filière</label>
-                            <select class="select floating">
-                                <option>-</option>
-                                
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                        <div class="form-group form-focus select-focus">
-                            <label class="focus-label">Classe</label>
-                            <select class="select floating">
-                            <option>-</option>
-                                
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                        <div class="form-group form-focus select-focus">
-                            <label class="focus-label">Groupe</label>
-                            <select class="select floating">
-                            <option>-</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                        <a href="#" class="btn btn-success btn-block"> Search </a>
-                    </div>
+                <form action="result.php" method="POST">
+        <div class="row filter-row">
+            <div class="col-sm-6 col-md-3">
+                <div class="form-group form-focus select-focus">
+                    <label class="focus-label">Filière</label>
+                    <select class="select floating" name="filiere">
+                        <option>-</option>
+                        <?php
+                        include("config.php");
+
+                        $requeteFilieres = "SELECT id_filiere, nom_filiere FROM filiere";
+                        $resultFilieres = $mysqli->query($requeteFilieres);
+
+                        while ($rowFiliere = mysqli_fetch_array($resultFilieres)) {
+                            echo '<option value="' . $rowFiliere['id_filiere'] . '">' . $rowFiliere['nom_filiere'] . '</option>';
+                        }
+                        ?>
+                    </select>
                 </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="form-group form-focus select-focus">
+                    <label class="focus-label">Classe</label>
+                    <select class="select floating" name="classe">
+                        <option>-</option>
+                        <?php
+                        $requeteClasses = "SELECT id_class, nom_class FROM class";
+                        $resultClasses = $mysqli->query($requeteClasses);
+
+                        while ($rowClass = mysqli_fetch_array($resultClasses)) {
+                            echo '<option value="' . $rowClass['id_class'] . '">' . $rowClass['nom_class'] . '</option>';
+                        }
+                        ?>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="form-group form-focus select-focus">
+                    <label class="focus-label">Groupe</label>
+                    <select class="select floating" name="groupe">
+                        <option>-</option>
+                        <?php
+                        $requeteGroupes = "SELECT id_group, nom_group FROM groupe";
+                        $resultGroupes = $mysqli->query($requeteGroupes);
+
+                        while ($rowGroupe = mysqli_fetch_array($resultGroupes)) {
+                            echo '<option value="' . $rowGroupe['id_group'] . '">' . $rowGroupe['nom_group'] . '</option>';
+                        }
+                        ?>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <button type="submit" class="btn btn-success btn-block" name="search"> Search </button>
+            </div>
+        </div>
+    </form>
                 <div class="row">
                     <div class="col-md-12">
 						<div class="table-responsive">
+
+                        
+
                             <table class="fl-table">
                                 <thead>
                                     <tr>
                                         <th>Nom etudiant</th>
                                         <th>prenom etudiant</th>
                                         <th>Email</th>
-                                        <th>mot de passse</th>
-                                        <th>adresse</th>
-                                        <th>naissance</th>
-                                        <th>telephone</th>
-                                        <th>groupe</th>
-                                        
-                                        <th class="text-right">Action</th>
+                                        <th>Mot de passse</th>
+                                        <th>Adresse</th>
+                                        <th>Naissance</th>
+                                        <th>Telephone</th>
+                                        <th>Groupe</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                      <td>yosra</td>
-                                        <td>mouh</td>
-                                        <td>albinasimonis@example.com</td>
-                                        <td>828-634-2744</td>
-                                        <td>7 May 2015</td>
-                                        <td>hkmlkl</td>
-                                        <td>ghjk</td>
-                                        <td>
-                                            ghj
-                                        </td>
-                                        <td class="text-right">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item" href="edit_etudiant.php"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                                    <a class="dropdown-item" href="deleteEtudiant.php" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    
-									
-									
-									
+                                <?php
+include("config.php");
+
+// Exécuter une requête de sélection
+$requeteSelect = "SELECT * FROM etudiant";
+$result = $mysqli->query($requeteSelect);
+while ($row = mysqli_fetch_array($result)) {
+    echo "<tr>";
+    echo "<td>". $row['nom_etudiant'] ."</td>";
+    echo "<td>". $row['prenom_etudiant'] ."</td>";
+    echo "<td>". $row['email_etudiant'] ."</td>";
+    echo "<td>". $row['mdp_etudiant'] ."</td>";
+    echo "<td>". $row['adresse'] ."</td>";
+    echo "<td>". $row['naissance'] ."</td>";
+    echo "<td>". $row['telephone'] ."</td>";
+  // Sélectionner les groupes depuis la table groupe
+$requeteGroupes = "SELECT id_group, nom_group FROM groupe";
+$resultGroupes = $mysqli->query($requeteGroupes);
+
+// Rechercher le nom du groupe correspondant à l'ID stocké
+$selectedGroupId = $row['id_group'];
+$selectedGroupName = '';
+
+while ($rowGroupe = mysqli_fetch_array($resultGroupes)) {
+    if ($rowGroupe['id_group'] == $selectedGroupId) {
+        $selectedGroupName = $rowGroupe['nom_group'];
+        break;
+    }
+}
+
+echo "<td>".$selectedGroupName."</td>";
+
+    echo "<td><a href=\"edit_etudiant.php?id_etudiant=".$row['id_etudiant']."\" style=\"margin-right:10px; color:green;\"><i class=\"fa fa-pencil m-r-5\"></i></a>
+         <a href=\"delete_etudiant.php?id_etudiant=" . $row['id_etudiant'] . "\" style=\"margin-right:10px; color:red;\" onClick=\"return confirm('Êtes-vous sûr de vouloir supprimer cet étudiant ?');\"><i class=\"fa fa-trash-o m-r-5\"></i></a></td>";
+    echo "</tr>";
+}
+?>
+
                                 </tbody>
                             </table>
 						</div>

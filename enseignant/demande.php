@@ -1,6 +1,19 @@
 <?php
 session_start();
+// Include the database configuration file
+require_once 'config.php';
+
+
+    // Fetch the admin credentials from the database
+    $query = "SELECT * FROM enseignant WHERE nom_enseignant = ? OR email_enseignant = ? LIMIT 1";
+    $stmt = $mysqli->prepare($query);
+    $stmt->bind_param('ss', $email, $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $enseignant = $result->fetch_assoc();
+    //$_SESSION['id_enseignant'] = $enseignant['id_enseignant'];
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +48,7 @@ session_start();
 			</div>
 			<a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
             <a id="mobile_btn" class="mobile_btn float-left" href="#sidebar"><i class="fa fa-bars"></i></a>
-		
+
             <ul class="nav user-menu float-right">
                 <li class="nav-item dropdown">
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"><i class="fa fa-bell-o"></i> <span class="badge badge-pill bg-danger float-right">3</span></a>
@@ -57,11 +70,15 @@ session_start();
                         <span class="user-img"><img class="rounded-circle" src="assets/img/user.jpg" width="40" >
 							<span class="status online"></span></span>
                             <span><?php echo $_SESSION['enseignant']; ?></span>
+                         
+                               
                     </a>
 					<div class="dropdown-menu">
+
 						<a class="dropdown-item" href="profile.php">My Profile</a>
 						
 						<a class="dropdown-item" href="login.php">Logout</a>
+                       
 					</div>
                 </li>
             </ul>
@@ -119,16 +136,36 @@ session_start();
                                             <label>Time du cours</label>
                                             <input type="time" name="Heure_Coursa" id="Heure_Coursa" value="" class="form-control">
                                         </div>
-                                    
                                         <div class="col-sm-14">
                                             <div class="form-group">
-                                                <label>Module</label>
-                                                <select onChange="getmodule(this.value);" class="select" name="Module" id="Module" class="form-control" required>
+                                            <label>Module</label>
+                                            <select onChange="getmodule(this.value);" class="select form-control" name="Module" id="Module" required>
                                                 <option value="">Module</option>
-                                                <option>Mecanique</option>
-                                                <option>Thermodinamique</option>
-                                                <option>Electrostatique</option>                                                    
-                                                </select>
+                                                <?php
+
+                                                    
+                                                // Requête SQL pour récupérer les modules enseignés par l'enseignant
+                                                $sql = "SELECT element_module.id_element_module, nom_element_module
+                                                        FROM element_module
+                                                        INNER JOIN enseigne ON element_module.id_element_module = enseigne.id_element_module
+                                                        WHERE enseigne.id_enseignant = " . $_SESSION['user_id'];
+
+                                                // Exécution de la requête SQL
+                                                $result = $mysqli->query($sql);
+
+                                                // Vérification des erreurs lors de l'exécution de la requête
+                                                if (!$result) {
+                                                    die("Erreur lors de l'exécution de la requête : " . $mysqli->error);
+                                                }
+
+                                                // Parcours des résultats et création des options du combo box
+                                                while ($row = $result->fetch_assoc()) {
+                                                    $moduleId = $row['id_element_module'];
+                                                    $moduleName = $row['nom_element_module'];
+                                                    echo "<option value=\"$moduleName\">$moduleName</option>";
+                                                }
+                                                ?>
+                                            </select>
                                             </div>
 
                                         <div class="form-group">

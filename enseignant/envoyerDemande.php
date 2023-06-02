@@ -1,4 +1,7 @@
 <?php
+session_start();
+// Include the database configuration file
+require_once 'config.php';
 // Vérifier si le formulaire a été soumis
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Récupérer les valeurs des champs du formulaire
@@ -10,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $contenu = $_POST["contenu"];
     
     // Les valeurs fixes pour id_enseignant, id_admin et statut_demande
-    $id_enseignant = 1;
+    $id_enseignant = $_SESSION['user_id'];
     $id_admin = 1;
 
     $statutDemande = "encours";

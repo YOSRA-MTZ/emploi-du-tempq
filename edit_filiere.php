@@ -142,9 +142,7 @@ if (isset($_GET['id_filiere'])) {
                         <li>
                             <a href="calendar.php"><i class="fa fa-calendar"></i> <span>Calendrier</span></a>
                         </li>
-                        <li>
-                        <a href="disposalle.php"><i class="fa fa-home"></i> <span>Disponibilite salle</span></a>
-                        </li>
+                        
                         <li class="submenu">
                             <a href="#"><i class="fa fa-cog"></i> <span> Paramétrage </span> <span class="menu-arrow"></span></a>
                             <ul style="display: none;">
